@@ -63,10 +63,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listBox = window.FindListBox("BoundListBox");
             Assert.That(listBox.Items, Has.Count.EqualTo(2));
-            Assert.That(listBox.Items[0], Is.InstanceOf<ListBoxItem>());
-            Assert.That(listBox.Items[1], Is.InstanceOf<ListBoxItem>());
-            Assert.That(listBox.SelectedItem, Is.Null);
-            Assert.That(listBox.SelectedIndex, Is.EqualTo(-1));
+            Assert.Multiple(() =>
+            {
+                Assert.That(listBox.Items[0], Is.InstanceOf<ListBoxItem>());
+                Assert.That(listBox.Items[1], Is.InstanceOf<ListBoxItem>());
+                Assert.That(listBox.SelectedItem, Is.Null);
+                Assert.That(listBox.SelectedIndex, Is.EqualTo(-1));
+            });
 
             var item = listBox.Select(0);
             Assert.Multiple(() =>

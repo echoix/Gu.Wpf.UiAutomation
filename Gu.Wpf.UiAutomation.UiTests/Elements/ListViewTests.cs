@@ -43,8 +43,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var presenter = listView.ColumnHeadersPresenter;
-            Assert.That(UiElement.FromAutomationElement(presenter.AutomationElement), Is.InstanceOf<GridViewHeaderRowPresenter>());
-            Assert.That(presenter.Headers, Has.Count.EqualTo(2));
+            Assert.Multiple(() =>
+            {
+                Assert.That(UiElement.FromAutomationElement(presenter.AutomationElement), Is.InstanceOf<GridViewHeaderRowPresenter>());
+                Assert.That(presenter.Headers, Has.Count.EqualTo(2));
+            });
 
             Assert.Multiple(() =>
             {
@@ -94,8 +97,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var listView = window.FindListView();
             var cell = listView[row, column];
             Assert.That(cell, Is.InstanceOf<GridViewCell>());
-            Assert.That(cell.Text, Is.EqualTo(expected));
-            Assert.That(UiElement.FromAutomationElement(cell.AutomationElement), Is.InstanceOf<GridViewCell>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(cell.Text, Is.EqualTo(expected));
+                Assert.That(UiElement.FromAutomationElement(cell.AutomationElement), Is.InstanceOf<GridViewCell>());
+            });
         }
 
         [Test]

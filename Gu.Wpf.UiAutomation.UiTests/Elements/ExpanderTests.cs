@@ -24,9 +24,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
-            Assert.That(expander.HeaderText, Is.EqualTo(header));
-            Assert.That(expander.FindTextBlock(), Is.Not.Null);
-            Assert.That(UiElement.FromAutomationElement(expander.AutomationElement), Is.InstanceOf<Expander>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(expander.HeaderText, Is.EqualTo(header));
+                Assert.That(expander.FindTextBlock(), Is.Not.Null);
+                Assert.That(UiElement.FromAutomationElement(expander.AutomationElement), Is.InstanceOf<Expander>());
+            });
         }
 
         [TestCase("AutomationId", "1")]

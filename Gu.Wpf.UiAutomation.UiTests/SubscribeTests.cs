@@ -109,14 +109,20 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 var textBox = window.FindTextBox("TextBox2");
                 textBox.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                Assert.That(changes, Is.EqualTo(new[] { 20005 }).AsCollection);
-                Assert.That(window.FocusedElement(), Is.EqualTo(textBox));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(changes, Is.EqualTo(new[] { 20005 }).AsCollection);
+                    Assert.That(window.FocusedElement(), Is.EqualTo(textBox));
+                });
 
                 var button = window.FindButton("Button1");
                 button.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                Assert.That(changes, Is.EqualTo(new[] { 20005, 20005 }).AsCollection);
-                Assert.That(window.FocusedElement(), Is.EqualTo(button));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(changes, Is.EqualTo(new[] { 20005, 20005 }).AsCollection);
+                    Assert.That(window.FocusedElement(), Is.EqualTo(button));
+                });
             }
         }
 

@@ -19,8 +19,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CalendarWindow");
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
-            Assert.That(UiElement.FromAutomationElement(calendar.AutomationElement), Is.InstanceOf<Calendar>());
-            Assert.That(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement), Is.InstanceOf<CalendarDayButton>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(UiElement.FromAutomationElement(calendar.AutomationElement), Is.InstanceOf<Calendar>());
+                Assert.That(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement), Is.InstanceOf<CalendarDayButton>());
+            });
         }
 
         [Test]
@@ -40,8 +43,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
             var date = DateTime.Today.AddDays(1);
-            Assert.That(calendar.SelectedItem, Is.Null);
-            Assert.That(calendar.Select(date), Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(calendar.SelectedItem, Is.Null);
+                Assert.That(calendar.Select(date), Is.Not.Null);
+            });
 
             // Can't figure out a nice way to assert here
             // Tricky with culture

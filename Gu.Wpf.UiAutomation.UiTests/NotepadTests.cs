@@ -58,8 +58,11 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 using var app = Application.AttachOrLaunch(new ProcessStartInfo(name));
                 var window = app.MainWindow;
                 Assert.That(window, Is.Not.Null);
-                Assert.That(window.Title, Is.Not.Null);
-                Assert.That(app.Close(), Is.EqualTo(true));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(window.Title, Is.Not.Null);
+                    Assert.That(app.Close(), Is.EqualTo(true));
+                });
             }
         }
     }

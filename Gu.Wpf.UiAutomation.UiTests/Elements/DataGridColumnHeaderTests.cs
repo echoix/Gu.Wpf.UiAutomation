@@ -28,9 +28,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridColumnHeader)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeader);
-            Assert.That(header.Text, Is.EqualTo("IntValue"));
-            Assert.That(header.LeftHeaderGripper, Is.Not.Null);
-            Assert.That(header.RightHeaderGripper, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(header.Text, Is.EqualTo("IntValue"));
+                Assert.That(header.LeftHeaderGripper, Is.Not.Null);
+                Assert.That(header.RightHeaderGripper, Is.Not.Null);
+            });
         }
     }
 }

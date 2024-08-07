@@ -21,15 +21,21 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TreeViewWindow");
             var window = app.MainWindow;
             var tree = window.FindTreeView();
-            Assert.That(tree.SelectedTreeViewItem, Is.Null);
-            Assert.That(tree.Items, Has.Count.EqualTo(2));
+            Assert.Multiple(() =>
+            {
+                Assert.That(tree.SelectedTreeViewItem, Is.Null);
+                Assert.That(tree.Items, Has.Count.EqualTo(2));
+            });
             var treeItem = tree.Items[0];
             treeItem.Expand();
             var item = treeItem.Items[1];
             item.Expand();
             item.Items[0].Select();
-            Assert.That(item.Items[0].IsSelected, Is.EqualTo(true));
-            Assert.That(tree.SelectedTreeViewItem, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(item.Items[0].IsSelected, Is.EqualTo(true));
+                Assert.That(tree.SelectedTreeViewItem, Is.Not.Null);
+            });
             Assert.That(tree.SelectedTreeViewItem.Text, Is.EqualTo("Lvl3 a"));
         }
 

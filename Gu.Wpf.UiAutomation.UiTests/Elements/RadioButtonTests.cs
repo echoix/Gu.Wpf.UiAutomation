@@ -20,8 +20,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "RadioButtonWindow");
             var window = app.MainWindow;
             var radioButton = window.FindRadioButton(key);
-            Assert.That(radioButton.IsEnabled, Is.EqualTo(true));
-            Assert.That(UiElement.FromAutomationElement(radioButton.AutomationElement), Is.InstanceOf<RadioButton>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton.IsEnabled, Is.EqualTo(true));
+                Assert.That(UiElement.FromAutomationElement(radioButton.AutomationElement), Is.InstanceOf<RadioButton>());
+            });
         }
 
         [Test]

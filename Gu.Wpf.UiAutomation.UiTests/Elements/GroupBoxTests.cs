@@ -24,9 +24,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
-            Assert.That(groupBox.HeaderText, Is.EqualTo(header));
-            Assert.That(groupBox.FindTextBlock(), Is.Not.Null);
-            Assert.That(UiElement.FromAutomationElement(groupBox.AutomationElement), Is.InstanceOf<GroupBox>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(groupBox.HeaderText, Is.EqualTo(header));
+                Assert.That(groupBox.FindTextBlock(), Is.Not.Null);
+                Assert.That(UiElement.FromAutomationElement(groupBox.AutomationElement), Is.InstanceOf<GroupBox>());
+            });
         }
 
         [TestCase("AutomationId", "1")]

@@ -29,9 +29,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.That(row.Header.Text, Is.EqualTo("Row 1"));
-            Assert.That(row.Header.TopHeaderGripper, Is.Not.Null);
-            Assert.That(row.Header.BottomHeaderGripper, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(row.Header.Text, Is.EqualTo("Row 1"));
+                Assert.That(row.Header.TopHeaderGripper, Is.Not.Null);
+                Assert.That(row.Header.BottomHeaderGripper, Is.Not.Null);
+            });
         }
 
         [Test]

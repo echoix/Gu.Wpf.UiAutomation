@@ -20,9 +20,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "LabelWindow");
             var window = app.MainWindow;
             var label = window.FindLabel(key);
-            Assert.That(label.Text, Is.EqualTo(header));
-            Assert.That(label.FindTextBlock(), Is.Not.Null);
-            Assert.That(UiElement.FromAutomationElement(label.AutomationElement), Is.InstanceOf<Label>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(label.Text, Is.EqualTo(header));
+                Assert.That(label.FindTextBlock(), Is.Not.Null);
+                Assert.That(UiElement.FromAutomationElement(label.AutomationElement), Is.InstanceOf<Label>());
+            });
         }
     }
 }

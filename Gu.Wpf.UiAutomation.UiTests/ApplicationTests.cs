@@ -35,8 +35,11 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 Assert.That(app.HasExited, Is.EqualTo(false));
                 Assert.That(app.Close(), Is.EqualTo(true));
             });
-            Assert.That(app.HasExited, Is.EqualTo(true));
-            Assert.That(app.ExitCode, Is.EqualTo(0));
+            Assert.Multiple(() =>
+            {
+                Assert.That(app.HasExited, Is.EqualTo(true));
+                Assert.That(app.ExitCode, Is.EqualTo(0));
+            });
         }
 
         [Test]
