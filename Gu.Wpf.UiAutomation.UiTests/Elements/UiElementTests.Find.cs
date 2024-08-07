@@ -132,17 +132,18 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             {
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
-                Assert.Multiple(() =>
-                {
-                    Assert.That(window.TryFindAt(
-                                    TreeScope.Descendants,
-                                    Conditions.CheckBox,
-                                    1,
-                                    x => new CheckBox(x),
-                                    TimeSpan.FromMilliseconds(100),
-                                    out var child), Is.EqualTo(true));
-                    Assert.That(child, Is.InstanceOf<CheckBox>());
-                });
+
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(window.TryFindAt(
+                                TreeScope.Descendants,
+                                Conditions.CheckBox,
+                                1,
+                                x => new CheckBox(x),
+                                TimeSpan.FromMilliseconds(100),
+                                out var child), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That(child, Is.InstanceOf<CheckBox>());
+
                 Assert.Multiple(() =>
                 {
                     Assert.That(child.AutomationId, Is.EqualTo("XName"));
