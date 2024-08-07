@@ -110,13 +110,13 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 textBox.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 CollectionAssert.AreEqual(new[] { 20005 }, changes);
-                Assert.AreEqual(textBox, window.FocusedElement());
+                Assert.That(window.FocusedElement(), Is.EqualTo(textBox));
 
                 var button = window.FindButton("Button1");
                 button.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 CollectionAssert.AreEqual(new[] { 20005, 20005 }, changes);
-                Assert.AreEqual(button, window.FocusedElement());
+                Assert.That(window.FocusedElement(), Is.EqualTo(button));
             }
         }
 

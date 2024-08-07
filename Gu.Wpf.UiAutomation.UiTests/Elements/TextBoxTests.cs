@@ -13,7 +13,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TextBoxWindow");
             var window = app.MainWindow;
             var textBox = window.FindTextBox(key);
-            Assert.AreEqual(true, textBox.IsEnabled);
+            Assert.That(textBox.IsEnabled, Is.EqualTo(true));
             Assert.IsInstanceOf<TextBox>(UiElement.FromAutomationElement(textBox.AutomationElement));
         }
 
@@ -25,7 +25,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TextBoxWindow");
             var window = app.MainWindow;
             var textBox = window.FindTextBox(key);
-            Assert.AreEqual(expected, textBox.IsReadOnly);
+            Assert.That(textBox.IsReadOnly, Is.EqualTo(expected));
         }
 
         [Test]
@@ -34,16 +34,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TextBoxWindow");
             var window = app.MainWindow;
             var textBox = window.FindTextBox("TestTextBox");
-            Assert.AreEqual("Test TextBox", textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo("Test TextBox"));
 
             textBox.Text = "Hello World";
-            Assert.AreEqual("Hello World", textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo("Hello World"));
 
             textBox.Text = string.Empty;
-            Assert.AreEqual(string.Empty, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(string.Empty));
 
             textBox.Text = null;
-            Assert.AreEqual(string.Empty, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(string.Empty));
         }
 
         [TestCase("Hello World")]
@@ -53,7 +53,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var textBox = window.FindTextBox("TestTextBox");
             textBox.Enter(text);
-            Assert.AreEqual(text, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(text));
         }
 
         [Test]
@@ -63,11 +63,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var textBox = window.FindTextBox("TestTextBox");
             textBox.Focus();
-            Assert.AreEqual(true, textBox.HasKeyboardFocus);
+            Assert.That(textBox.HasKeyboardFocus, Is.EqualTo(true));
 
             textBox = window.FindTextBox("TestTextBox1");
             textBox.Focus();
-            Assert.AreEqual(true, textBox.HasKeyboardFocus);
+            Assert.That(textBox.HasKeyboardFocus, Is.EqualTo(true));
         }
     }
 }

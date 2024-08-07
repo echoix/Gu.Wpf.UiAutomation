@@ -30,12 +30,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
 
-            Assert.AreEqual(0, slider.Minimum);
-            Assert.AreEqual(10, slider.Maximum);
-            Assert.AreEqual(5, slider.Value);
-            Assert.AreEqual(1, slider.SmallChange);
-            Assert.AreEqual(4, slider.LargeChange);
-            Assert.AreEqual(false, slider.IsOnlyValue);
+            Assert.That(slider.Minimum, Is.EqualTo(0));
+            Assert.That(slider.Maximum, Is.EqualTo(10));
+            Assert.That(slider.Value, Is.EqualTo(5));
+            Assert.That(slider.SmallChange, Is.EqualTo(1));
+            Assert.That(slider.LargeChange, Is.EqualTo(4));
+            Assert.That(slider.IsOnlyValue, Is.EqualTo(false));
         }
 
         [Test]
@@ -47,9 +47,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             slider.Value = 5;
 
             var thumb = slider.Thumb;
-            Assert.AreEqual("350.5,240", thumb.Bounds.Center().ToString(CultureInfo.InvariantCulture));
+            Assert.That(thumb.Bounds.Center().ToString(CultureInfo.InvariantCulture), Is.EqualTo("350.5,240"));
             thumb.SlideHorizontally(50);
-            Assert.AreEqual("397.5,240", thumb.Bounds.Center().ToString(CultureInfo.InvariantCulture));
+            Assert.That(thumb.Bounds.Center().ToString(CultureInfo.InvariantCulture), Is.EqualTo("397.5,240"));
         }
 
         [Test]
@@ -59,10 +59,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
             slider.Value = 6;
-            Assert.AreEqual(6, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(6));
 
             slider.Value = 4;
-            Assert.AreEqual(4, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(4));
         }
 
         [Test]
@@ -72,16 +72,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
-            Assert.AreEqual(5, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(5));
 
             slider.SmallIncrement();
-            Assert.AreEqual(6, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(6));
 
             slider.SmallIncrement();
-            Assert.AreEqual(7, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(7));
 
             slider.SmallIncrement();
-            Assert.AreEqual(8, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(8));
         }
 
         [Test]
@@ -91,13 +91,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
-            Assert.AreEqual(5, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(5));
 
             slider.SmallDecrement();
-            Assert.AreEqual(4, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(4));
 
             slider.SmallDecrement();
-            Assert.AreEqual(3, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(3));
         }
 
         [Test]
@@ -107,13 +107,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
-            Assert.AreEqual(5, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(5));
 
             slider.LargeIncrement();
-            Assert.AreEqual(9, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(9));
 
             slider.LargeIncrement();
-            Assert.AreEqual(10, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(10));
         }
 
         [Test]
@@ -123,13 +123,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
-            Assert.AreEqual(5, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(5));
 
             slider.LargeDecrement();
-            Assert.AreEqual(1, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(1));
 
             slider.LargeDecrement();
-            Assert.AreEqual(0, slider.Value);
+            Assert.That(slider.Value, Is.EqualTo(0));
         }
     }
 }

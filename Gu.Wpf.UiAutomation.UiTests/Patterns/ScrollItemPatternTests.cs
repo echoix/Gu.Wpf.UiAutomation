@@ -13,13 +13,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Patterns
             var window = app.MainWindow;
             var listView = window.FindListView();
             var gridPattern = listView.AutomationElement.GridPattern();
-            Assert.AreEqual(2, gridPattern.Current.ColumnCount);
-            Assert.AreEqual(7, gridPattern.Current.RowCount);
+            Assert.That(gridPattern.Current.ColumnCount, Is.EqualTo(2));
+            Assert.That(gridPattern.Current.RowCount, Is.EqualTo(7));
 
             ItemRealizer.RealizeItems(listView);
-            Assert.AreEqual(listView.Items.Count, gridPattern.Current.RowCount);
+            Assert.That(gridPattern.Current.RowCount, Is.EqualTo(listView.Items.Count));
             var scrollPattern = listView.AutomationElement.ScrollPattern();
-            Assert.AreEqual(0, scrollPattern.Current.VerticalScrollPercent);
+            Assert.That(scrollPattern.Current.VerticalScrollPercent, Is.EqualTo(0));
             foreach (var item in listView.Items)
             {
                 var scrollItemPattern = item.AutomationElement.ScrollItemPattern();
@@ -27,7 +27,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Patterns
                 item.ScrollIntoView();
             }
 
-            Assert.AreEqual(100, scrollPattern.Current.VerticalScrollPercent);
+            Assert.That(scrollPattern.Current.VerticalScrollPercent, Is.EqualTo(100));
         }
     }
 }

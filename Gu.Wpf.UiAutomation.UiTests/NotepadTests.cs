@@ -59,7 +59,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 var window = app.MainWindow;
                 Assert.NotNull(window);
                 Assert.NotNull(window.Title);
-                Assert.AreEqual(true, app.Close());
+                Assert.That(app.Close(), Is.EqualTo(true));
             }
         }
     }

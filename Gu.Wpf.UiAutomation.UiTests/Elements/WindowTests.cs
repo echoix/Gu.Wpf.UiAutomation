@@ -24,7 +24,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show Dialog").Click();
             var dialog = window.ModalWindows.Single();
-            Assert.AreEqual("Message", dialog.FindTextBlock().Text);
+            Assert.That(dialog.FindTextBlock().Text, Is.EqualTo("Message"));
             dialog.Close();
         }
 
@@ -33,12 +33,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
         {
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
-            Assert.AreEqual(true, window.CanResize);
-            Assert.AreEqual("300,300", window.Bounds.Size.ToString(CultureInfo.InvariantCulture));
+            Assert.That(window.CanResize, Is.EqualTo(true));
+            Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("300,300"));
 
             window.Resize(270, 280);
-            Assert.AreEqual(true, window.CanResize);
-            Assert.AreEqual("270,280", window.Bounds.Size.ToString(CultureInfo.InvariantCulture));
+            Assert.That(window.CanResize, Is.EqualTo(true));
+            Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("270,280"));
         }
 
         [Test]
@@ -46,15 +46,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
         {
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
-            Assert.AreEqual(true, window.CanMove);
+            Assert.That(window.CanMove, Is.EqualTo(true));
 
             window.MoveTo(10, 20);
-            Assert.AreEqual(true, window.CanMove);
-            Assert.AreEqual("10,20,300,300", window.Bounds.ToString(CultureInfo.InvariantCulture));
+            Assert.That(window.CanMove, Is.EqualTo(true));
+            Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("10,20,300,300"));
 
             window.MoveTo(30, 40);
-            Assert.AreEqual(true, window.CanMove);
-            Assert.AreEqual("30,40,300,300", window.Bounds.ToString(CultureInfo.InvariantCulture));
+            Assert.That(window.CanMove, Is.EqualTo(true));
+            Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("30,40,300,300"));
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
         {
             using var app = Application.Launch("Netcore3App.exe");
             var window = app.MainWindow;
-            Assert.AreEqual("Test", window.FindTextBlock("TextBlock").Text);
+            Assert.That(window.FindTextBlock("TextBlock").Text, Is.EqualTo("Test"));
         }
     }
 }

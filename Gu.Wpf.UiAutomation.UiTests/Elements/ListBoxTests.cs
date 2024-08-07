@@ -62,23 +62,23 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListBoxWindow");
             var window = app.MainWindow;
             var listBox = window.FindListBox("BoundListBox");
-            Assert.AreEqual(2, listBox.Items.Count);
+            Assert.That(listBox.Items.Count, Is.EqualTo(2));
             Assert.IsInstanceOf<ListBoxItem>(listBox.Items[0]);
             Assert.IsInstanceOf<ListBoxItem>(listBox.Items[1]);
             Assert.IsNull(listBox.SelectedItem);
-            Assert.AreEqual(-1, listBox.SelectedIndex);
+            Assert.That(listBox.SelectedIndex, Is.EqualTo(-1));
 
             var item = listBox.Select(0);
-            Assert.AreEqual("Johan", item.FindTextBlock().Text);
-            Assert.AreEqual("Johan", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
-            Assert.AreEqual(0, listBox.SelectedIndex);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
+            Assert.That(listBox.SelectedIndex, Is.EqualTo(0));
 
             item = listBox.Select(1);
-            Assert.AreEqual("Erik", item.FindTextBlock().Text);
-            Assert.AreEqual("Erik", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
-            Assert.AreEqual(1, listBox.SelectedIndex);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("Erik"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("Erik"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
+            Assert.That(listBox.SelectedIndex, Is.EqualTo(1));
         }
 
         [Test]
@@ -90,14 +90,14 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.IsNull(listBox.SelectedItem);
 
             var item = listBox.Select(9);
-            Assert.AreEqual("10", item.FindTextBlock().Text);
-            Assert.AreEqual("10", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("10"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("10"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
 
             item = listBox.Select(0);
-            Assert.AreEqual("1", item.FindTextBlock().Text);
-            Assert.AreEqual("1", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("1"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("1"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
         }
 
         [Test]
@@ -107,19 +107,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listBox = window.FindListBox("BoundListBox");
             var item = listBox.Select("Johan");
-            Assert.AreEqual("Johan", item.FindTextBlock().Text);
-            Assert.AreEqual("Johan", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
 
             item = listBox.Select("Erik");
-            Assert.AreEqual("Erik", item.FindTextBlock().Text);
-            Assert.AreEqual("Erik", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("Erik"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("Erik"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
 
             item = listBox.Select("Johan");
-            Assert.AreEqual("Johan", item.FindTextBlock().Text);
-            Assert.AreEqual("Johan", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("Johan"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
         }
 
         [Test]
@@ -129,19 +129,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listBox = window.FindListBox("ListBox10");
             var item = listBox.Select("10");
-            Assert.AreEqual("10", item.FindTextBlock().Text);
-            Assert.AreEqual("10", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("10"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("10"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
 
             item = listBox.Select("1");
-            Assert.AreEqual("1", item.FindTextBlock().Text);
-            Assert.AreEqual("1", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("1"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("1"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
 
             item = listBox.Select("5");
-            Assert.AreEqual("5", item.FindTextBlock().Text);
-            Assert.AreEqual("5", listBox.SelectedItem.FindTextBlock().Text);
-            Assert.AreEqual(item, listBox.SelectedItem);
+            Assert.That(item.FindTextBlock().Text, Is.EqualTo("5"));
+            Assert.That(listBox.SelectedItem.FindTextBlock().Text, Is.EqualTo("5"));
+            Assert.That(listBox.SelectedItem, Is.EqualTo(item));
         }
     }
 }

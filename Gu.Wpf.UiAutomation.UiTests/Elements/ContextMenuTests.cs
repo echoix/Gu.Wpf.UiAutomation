@@ -15,11 +15,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             btn.RightClick();
             var ctxMenu = window.ContextMenu;
             var subMenuLevel1 = ctxMenu.Items;
-            Assert.AreEqual(2, subMenuLevel1.Count);
+            Assert.That(subMenuLevel1.Count, Is.EqualTo(2));
             var subMenuLevel2 = subMenuLevel1[1].Items;
-            Assert.AreEqual(1, subMenuLevel2.Count);
+            Assert.That(subMenuLevel2.Count, Is.EqualTo(1));
             var innerItem = subMenuLevel2[0];
-            Assert.AreEqual("Inner Context", innerItem.Text);
+            Assert.That(innerItem.Text, Is.EqualTo("Inner Context"));
             Assert.IsInstanceOf<ContextMenu>(UiElement.FromAutomationElement(ctxMenu.AutomationElement));
         }
     }

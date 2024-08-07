@@ -24,7 +24,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
-            Assert.AreEqual(header, expander.HeaderText);
+            Assert.That(expander.HeaderText, Is.EqualTo(header));
             Assert.NotNull(expander.FindTextBlock());
             Assert.IsInstanceOf<Expander>(UiElement.FromAutomationElement(expander.AutomationElement));
         }
@@ -37,9 +37,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
-            Assert.AreEqual(expected, expander.HeaderText);
+            Assert.That(expander.HeaderText, Is.EqualTo(expected));
             var header = expander.Header;
-            Assert.AreEqual(expected, ((ToggleButton)header).Text);
+            Assert.That(((ToggleButton)header).Text, Is.EqualTo(expected));
         }
 
         [TestCase("AutomationId", "1")]
@@ -50,8 +50,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
-            Assert.AreEqual(content, ((TextBlock)expander.Content).Text);
-            Assert.AreEqual(content, ((TextBlock)expander.ContentCollection[0]).Text);
+            Assert.That(((TextBlock)expander.Content).Text, Is.EqualTo(content));
+            Assert.That(((TextBlock)expander.ContentCollection[0]).Text, Is.EqualTo(content));
         }
 
         [Test]
@@ -61,13 +61,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("WithItemsControl");
             expander.IsExpanded = true;
-            Assert.AreEqual("WithItemsControl", expander.HeaderText);
-            Assert.AreEqual("WithItemsControl", ((ToggleButton)expander.Header).Text);
+            Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
+            Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
             Assert.Throws<InvalidOperationException>(() => _ = expander.Content);
             var content = expander.ContentCollection;
-            Assert.AreEqual(2, content.Count);
-            Assert.AreEqual("1", ((TextBlock)content[0]).Text);
-            Assert.AreEqual("2", ((TextBlock)content[1]).Text);
+            Assert.That(content.Count, Is.EqualTo(2));
+            Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+            Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
         }
 
         [Test]
@@ -77,13 +77,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("WithItemsControl");
             expander.IsExpanded = true;
-            Assert.AreEqual("WithItemsControl", expander.HeaderText);
-            Assert.AreEqual("WithItemsControl", ((ToggleButton)expander.Header).Text);
+            Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
+            Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
             Assert.Throws<InvalidOperationException>(() => _ = expander.Content);
             var content = expander.ContentElements(x => new TextBlock(x));
-            Assert.AreEqual(2, content.Count);
-            Assert.AreEqual("1", content[0].Text);
-            Assert.AreEqual("2", content[1].Text);
+            Assert.That(content.Count, Is.EqualTo(2));
+            Assert.That(content[0].Text, Is.EqualTo("1"));
+            Assert.That(content[1].Text, Is.EqualTo("2"));
         }
 
         [Test]
@@ -93,13 +93,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("AutomationId");
             expander.IsExpanded = true;
-            Assert.AreEqual(true, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(true));
 
             expander.IsExpanded = false;
-            Assert.AreEqual(false, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(false));
 
             expander.IsExpanded = true;
-            Assert.AreEqual(true, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(true));
         }
 
         [Test]
@@ -109,13 +109,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("AutomationId");
             expander.IsExpanded = true;
-            Assert.AreEqual(true, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(true));
 
             expander.Collapse();
-            Assert.AreEqual(false, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(false));
 
             expander.Expand();
-            Assert.AreEqual(true, expander.IsExpanded);
+            Assert.That(expander.IsExpanded, Is.EqualTo(true));
         }
     }
 }

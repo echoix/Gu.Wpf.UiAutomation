@@ -362,7 +362,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             window.FindButton("Clear").Click(moveMouse: true);
             window.WaitUntilResponsive();
             CollectionAssert.IsEmpty(events.Items);
-            Assert.AreEqual(CursorState.CURSOR_SHOWING, Mouse.GetCursorState());
+            Assert.That(Mouse.GetCursorState(), Is.EqualTo(CursorState.CURSOR_SHOWING));
         }
 
         [Test]
@@ -414,7 +414,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             window.FindButton("Clear").Click();
             window.WaitUntilResponsive();
             CollectionAssert.IsEmpty(events.Items);
-            Assert.AreEqual(CursorState.CURSOR_SHOWING, Mouse.GetCursorState());
+            Assert.That(Mouse.GetCursorState(), Is.EqualTo(CursorState.CURSOR_SHOWING));
         }
 
         // ReSharper disable once UnusedMember.Local

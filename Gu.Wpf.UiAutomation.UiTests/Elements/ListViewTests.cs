@@ -27,10 +27,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.AreEqual(2, listView.ColumnHeaders.Count);
+            Assert.That(listView.ColumnHeaders.Count, Is.EqualTo(2));
 
-            Assert.AreEqual("Key", listView.ColumnHeaders[0].Text);
-            Assert.AreEqual("Value", listView.ColumnHeaders[1].Text);
+            Assert.That(listView.ColumnHeaders[0].Text, Is.EqualTo("Key"));
+            Assert.That(listView.ColumnHeaders[1].Text, Is.EqualTo("Value"));
         }
 
         [Test]
@@ -41,10 +41,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var listView = window.FindListView();
             var presenter = listView.ColumnHeadersPresenter;
             Assert.IsInstanceOf<GridViewHeaderRowPresenter>(UiElement.FromAutomationElement(presenter.AutomationElement));
-            Assert.AreEqual(2, presenter.Headers.Count);
+            Assert.That(presenter.Headers.Count, Is.EqualTo(2));
 
-            Assert.AreEqual("Key", presenter.Headers[0].Text);
-            Assert.AreEqual("Value", presenter.Headers[1].Text);
+            Assert.That(presenter.Headers[0].Text, Is.EqualTo("Key"));
+            Assert.That(presenter.Headers[1].Text, Is.EqualTo("Value"));
         }
 
         [Test]
@@ -53,8 +53,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.AreEqual(3, listView.RowCount);
-            Assert.AreEqual(2, listView.ColumnCount);
+            Assert.That(listView.RowCount, Is.EqualTo(3));
+            Assert.That(listView.ColumnCount, Is.EqualTo(2));
         }
 
         [Test]
@@ -64,9 +64,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var columns = listView.ColumnHeaders;
-            Assert.AreEqual(2, columns.Count);
-            Assert.AreEqual("Key", columns[0].Text);
-            Assert.AreEqual("Value", columns[1].Text);
+            Assert.That(columns.Count, Is.EqualTo(2));
+            Assert.That(columns[0].Text, Is.EqualTo("Key"));
+            Assert.That(columns[1].Text, Is.EqualTo("Value"));
         }
 
         [TestCase(0, 0, "1")]
@@ -82,7 +82,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var listView = window.FindListView();
             var cell = listView[row, column];
             Assert.IsInstanceOf<GridViewCell>(cell);
-            Assert.AreEqual(expected, cell.Text);
+            Assert.That(cell.Text, Is.EqualTo(expected));
             Assert.IsInstanceOf<GridViewCell>(UiElement.FromAutomationElement(cell.AutomationElement));
         }
 
@@ -92,18 +92,18 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.AreEqual(3, listView.RowCount);
+            Assert.That(listView.RowCount, Is.EqualTo(3));
             var items = listView.Items;
-            Assert.AreEqual(3, items.Count);
-            Assert.AreEqual(2, items[0].Cells.Count);
-            Assert.AreEqual("1", items[0].Cells[0].Text);
-            Assert.AreEqual("10", items[0].Cells[1].Text);
-            Assert.AreEqual(2, items[1].Cells.Count);
-            Assert.AreEqual("2", items[1].Cells[0].Text);
-            Assert.AreEqual("20", items[1].Cells[1].Text);
-            Assert.AreEqual(2, items[2].Cells.Count);
-            Assert.AreEqual("3", items[2].Cells[0].Text);
-            Assert.AreEqual("30", items[2].Cells[1].Text);
+            Assert.That(items.Count, Is.EqualTo(3));
+            Assert.That(items[0].Cells.Count, Is.EqualTo(2));
+            Assert.That(items[0].Cells[0].Text, Is.EqualTo("1"));
+            Assert.That(items[0].Cells[1].Text, Is.EqualTo("10"));
+            Assert.That(items[1].Cells.Count, Is.EqualTo(2));
+            Assert.That(items[1].Cells[0].Text, Is.EqualTo("2"));
+            Assert.That(items[1].Cells[1].Text, Is.EqualTo("20"));
+            Assert.That(items[2].Cells.Count, Is.EqualTo(2));
+            Assert.That(items[2].Cells[0].Text, Is.EqualTo("3"));
+            Assert.That(items[2].Cells[1].Text, Is.EqualTo("30"));
         }
 
         [Test]
@@ -112,12 +112,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.AreEqual("1", ((TextBlock)listView[0, 0].Content).Text);
-            Assert.AreEqual("10", ((TextBlock)listView[0, 1].Content).Text);
-            Assert.AreEqual("2", ((TextBlock)listView[1, 0].Content).Text);
-            Assert.AreEqual("20", ((TextBlock)listView[1, 1].Content).Text);
-            Assert.AreEqual("3", ((TextBlock)listView[2, 0].Content).Text);
-            Assert.AreEqual("30", ((TextBlock)listView[2, 1].Content).Text);
+            Assert.That(((TextBlock)listView[0, 0].Content).Text, Is.EqualTo("1"));
+            Assert.That(((TextBlock)listView[0, 1].Content).Text, Is.EqualTo("10"));
+            Assert.That(((TextBlock)listView[1, 0].Content).Text, Is.EqualTo("2"));
+            Assert.That(((TextBlock)listView[1, 1].Content).Text, Is.EqualTo("20"));
+            Assert.That(((TextBlock)listView[2, 0].Content).Text, Is.EqualTo("3"));
+            Assert.That(((TextBlock)listView[2, 1].Content).Text, Is.EqualTo("30"));
         }
 
         [Test]
@@ -126,9 +126,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.AreEqual(listView, listView.Items[0].ContainingListView);
-            Assert.AreEqual(listView, listView.Items[1].ContainingListView);
-            Assert.AreEqual(listView, listView.Items[2].ContainingListView);
+            Assert.That(listView.Items[0].ContainingListView, Is.EqualTo(listView));
+            Assert.That(listView.Items[1].ContainingListView, Is.EqualTo(listView));
+            Assert.That(listView.Items[2].ContainingListView, Is.EqualTo(listView));
         }
 
         [Test]
@@ -138,24 +138,24 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var selectedRow = listView.Select(1);
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("2", selectedRow.Cells[0].Text);
-            Assert.AreEqual("20", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("2"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("20"));
 
             selectedRow = listView.SelectedItem;
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("2", selectedRow.Cells[0].Text);
-            Assert.AreEqual("20", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("2"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("20"));
 
             selectedRow = listView.Select(2);
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("3", selectedRow.Cells[0].Text);
-            Assert.AreEqual("30", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("3"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("30"));
 
             selectedRow = listView.SelectedItem;
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("3", selectedRow.Cells[0].Text);
-            Assert.AreEqual("30", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("3"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("30"));
         }
 
         [Test]
@@ -165,24 +165,24 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var selectedRow = listView.Select(1, "20");
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("2", selectedRow.Cells[0].Text);
-            Assert.AreEqual("20", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("2"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("20"));
 
             selectedRow = listView.SelectedItem;
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("2", selectedRow.Cells[0].Text);
-            Assert.AreEqual("20", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("2"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("20"));
 
             selectedRow = listView.Select(1, "30");
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("3", selectedRow.Cells[0].Text);
-            Assert.AreEqual("30", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("3"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("30"));
 
             selectedRow = listView.SelectedItem;
-            Assert.AreEqual(2, selectedRow.Cells.Count);
-            Assert.AreEqual("3", selectedRow.Cells[0].Text);
-            Assert.AreEqual("30", selectedRow.Cells[1].Text);
+            Assert.That(selectedRow.Cells.Count, Is.EqualTo(2));
+            Assert.That(selectedRow.Cells[0].Text, Is.EqualTo("3"));
+            Assert.That(selectedRow.Cells[1].Text, Is.EqualTo("30"));
         }
     }
 }

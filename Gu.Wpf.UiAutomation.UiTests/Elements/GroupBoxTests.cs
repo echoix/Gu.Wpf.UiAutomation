@@ -24,7 +24,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
-            Assert.AreEqual(header, groupBox.HeaderText);
+            Assert.That(groupBox.HeaderText, Is.EqualTo(header));
             Assert.NotNull(groupBox.FindTextBlock());
             Assert.IsInstanceOf<GroupBox>(UiElement.FromAutomationElement(groupBox.AutomationElement));
         }
@@ -37,9 +37,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
-            Assert.AreEqual(expected, groupBox.HeaderText);
+            Assert.That(groupBox.HeaderText, Is.EqualTo(expected));
             var header = groupBox.Header;
-            Assert.AreEqual(expected, ((TextBlock)header).Text);
+            Assert.That(((TextBlock)header).Text, Is.EqualTo(expected));
         }
 
         [TestCase("AutomationId", "1")]
@@ -50,8 +50,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
-            Assert.AreEqual(content, ((TextBlock)groupBox.Content).Text);
-            Assert.AreEqual(content, ((TextBlock)groupBox.ContentCollection[0]).Text);
+            Assert.That(((TextBlock)groupBox.Content).Text, Is.EqualTo(content));
+            Assert.That(((TextBlock)groupBox.ContentCollection[0]).Text, Is.EqualTo(content));
         }
 
         [Test]
@@ -60,13 +60,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox("WithItemsControl");
-            Assert.AreEqual("WithItemsControl", groupBox.HeaderText);
-            Assert.AreEqual("WithItemsControl", ((TextBlock)groupBox.Header).Text);
+            Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
+            Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
             Assert.Throws<InvalidOperationException>(() => _ = groupBox.Content);
             var content = groupBox.ContentCollection;
-            Assert.AreEqual(2, content.Count);
-            Assert.AreEqual("1", ((TextBlock)content[0]).Text);
-            Assert.AreEqual("2", ((TextBlock)content[1]).Text);
+            Assert.That(content.Count, Is.EqualTo(2));
+            Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+            Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
         }
 
         [Test]
@@ -75,13 +75,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox("WithItemsControl");
-            Assert.AreEqual("WithItemsControl", groupBox.HeaderText);
-            Assert.AreEqual("WithItemsControl", ((TextBlock)groupBox.Header).Text);
+            Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
+            Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
             Assert.Throws<InvalidOperationException>(() => _ = groupBox.Content);
             var content = groupBox.ContentElements(x => new TextBlock(x));
-            Assert.AreEqual(2, content.Count);
-            Assert.AreEqual("1", content[0].Text);
-            Assert.AreEqual("2", content[1].Text);
+            Assert.That(content.Count, Is.EqualTo(2));
+            Assert.That(content[0].Text, Is.EqualTo("1"));
+            Assert.That(content[1].Text, Is.EqualTo("2"));
         }
     }
 }

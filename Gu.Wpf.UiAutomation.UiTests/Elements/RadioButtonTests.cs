@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "RadioButtonWindow");
             var window = app.MainWindow;
             var radioButton = window.FindRadioButton(key);
-            Assert.AreEqual(true, radioButton.IsEnabled);
+            Assert.That(radioButton.IsEnabled, Is.EqualTo(true));
             Assert.IsInstanceOf<RadioButton>(UiElement.FromAutomationElement(radioButton.AutomationElement));
         }
 
@@ -32,16 +32,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton1 = window.FindRadioButton("Test RadioButton");
             var radioButton2 = window.FindRadioButton("AutomationId");
             radioButton1.IsChecked = true;
-            Assert.AreEqual(true, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
 
             radioButton2.IsChecked = true;
-            Assert.AreEqual(false, radioButton1.IsChecked);
-            Assert.AreEqual(true, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
 
             radioButton1.IsChecked = true;
-            Assert.AreEqual(true, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
         }
 
         [TestCase("Test RadioButton", "Test RadioButton")]
@@ -49,7 +49,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
         {
             using var app = Application.AttachOrLaunch(ExeFileName, "RadioButtonWindow");
             var window = app.MainWindow;
-            Assert.AreEqual(expected, window.FindRadioButton(name).Text);
+            Assert.That(window.FindRadioButton(name).Text, Is.EqualTo(expected));
         }
 
         [Test]
@@ -61,16 +61,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton2 = window.FindRadioButton("AutomationId");
 
             radioButton1.Click();
-            Assert.AreEqual(true, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
 
             radioButton2.Click();
-            Assert.AreEqual(false, radioButton1.IsChecked);
-            Assert.AreEqual(true, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
 
             radioButton1.Click();
-            Assert.AreEqual(true, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
         }
 
         [Test]
@@ -79,10 +79,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "RadioButtonWindow");
             var window = app.MainWindow;
             var radioButton = window.FindRadioButton("RadioButton1");
-            Assert.AreEqual(false, radioButton.IsChecked);
+            Assert.That(radioButton.IsChecked, Is.EqualTo(false));
 
             radioButton.IsChecked = true;
-            Assert.AreEqual(true, radioButton.IsChecked);
+            Assert.That(radioButton.IsChecked, Is.EqualTo(true));
         }
 
         [Test]
@@ -93,16 +93,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton1 = window.FindRadioButton("RadioButton1");
             var radioButton2 = window.FindRadioButton("RadioButton2");
 
-            Assert.AreEqual(false, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
 
             radioButton1.IsChecked = true;
-            Assert.AreEqual(true, radioButton1.IsChecked);
-            Assert.AreEqual(false, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
 
             radioButton2.IsChecked = true;
-            Assert.AreEqual(false, radioButton1.IsChecked);
-            Assert.AreEqual(true, radioButton2.IsChecked);
+            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
         }
     }
 }

@@ -17,9 +17,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var popup = window.FindPopup();
             Assert.NotNull(popup);
             var popupChildren = popup.FindAllChildren();
-            Assert.AreEqual(1, popupChildren.Count);
+            Assert.That(popupChildren.Count, Is.EqualTo(1));
             var check = (CheckBox)popupChildren[0];
-            Assert.AreEqual("This is a popup", check.Text);
+            Assert.That(check.Text, Is.EqualTo("This is a popup"));
         }
 
         [Test]
@@ -32,11 +32,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Wait.UntilInputIsProcessed();
             var popup = window.FindPopup();
             var popupChildren = popup.FindAllChildren();
-            Assert.AreEqual(1, popupChildren.Count);
+            Assert.That(popupChildren.Count, Is.EqualTo(1));
             var menu = (Menu)popupChildren[0];
-            Assert.AreEqual(1, menu.Items.Count);
+            Assert.That(menu.Items.Count, Is.EqualTo(1));
             var menuItem = menu.Items[0];
-            Assert.AreEqual("Some MenuItem", menuItem.Text);
+            Assert.That(menuItem.Text, Is.EqualTo("Some MenuItem"));
         }
     }
 }

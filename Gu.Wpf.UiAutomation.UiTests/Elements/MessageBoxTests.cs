@@ -30,9 +30,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show MessageBox OKCancel").Click();
             var messageBox = window.FindMessageBox();
-            Assert.AreEqual("Caption text", messageBox.Caption);
-            Assert.AreEqual("Message text", messageBox.Message);
-            Assert.AreEqual("Message text", messageBox.FindLabel().Text);
+            Assert.That(messageBox.Caption, Is.EqualTo("Caption text"));
+            Assert.That(messageBox.Message, Is.EqualTo("Message text"));
+            Assert.That(messageBox.FindLabel().Text, Is.EqualTo("Message text"));
 
             Assert.NotNull(messageBox.FindButton("OK"));
             Assert.NotNull(messageBox.FindButton("Cancel"));
@@ -47,9 +47,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show MessageBox YesNoCancel").Click();
             var messageBox = window.FindMessageBox();
-            Assert.AreEqual("Caption text", messageBox.Caption);
-            Assert.AreEqual("Message text", messageBox.Message);
-            Assert.AreEqual("Message text", messageBox.FindLabel().Text);
+            Assert.That(messageBox.Caption, Is.EqualTo("Caption text"));
+            Assert.That(messageBox.Message, Is.EqualTo("Message text"));
+            Assert.That(messageBox.FindLabel().Text, Is.EqualTo("Message text"));
 
             Assert.NotNull(messageBox.FindButton("Yes"));
             Assert.NotNull(messageBox.FindButton("No"));

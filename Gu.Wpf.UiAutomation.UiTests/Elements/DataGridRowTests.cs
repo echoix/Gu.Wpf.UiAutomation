@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.AreEqual("Row 1", row.Header.Text);
+            Assert.That(row.Header.Text, Is.EqualTo("Row 1"));
             Assert.NotNull(row.Header.TopHeaderGripper);
             Assert.NotNull(row.Header.BottomHeaderGripper);
         }
@@ -40,7 +40,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.AreEqual(2, row.Cells.Count);
+            Assert.That(row.Cells.Count, Is.EqualTo(2));
             CollectionAssert.AllItemsAreInstancesOfType(row.Cells, typeof(DataGridCell));
             CollectionAssert.AreEqual(new[] { "1", "Item 1" }, row.Cells.Select(x => x.Value));
         }

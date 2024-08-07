@@ -13,7 +13,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Converters
             using var app = Application.Launch(ExeFileName);
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
-            Assert.AreEqual(ControlType.CheckBox, checkBox.ControlType);
+            Assert.That(checkBox.ControlType, Is.EqualTo(ControlType.CheckBox));
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Converters
             using var app = Application.Launch(ExeFileName);
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
         }
 
         [Test]

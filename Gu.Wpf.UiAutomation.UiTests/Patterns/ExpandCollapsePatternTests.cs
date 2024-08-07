@@ -15,13 +15,13 @@
             var expander = window.FindExpander();
             Assert.NotNull(expander);
             var ecp = expander.AutomationElement.ExpandCollapsePattern();
-            Assert.AreEqual(ExpandCollapseState.Expanded, ecp.Current.ExpandCollapseState);
+            Assert.That(ecp.Current.ExpandCollapseState, Is.EqualTo(ExpandCollapseState.Expanded));
 
             ecp.Collapse();
-            Assert.AreEqual(ExpandCollapseState.Collapsed, ecp.Current.ExpandCollapseState);
+            Assert.That(ecp.Current.ExpandCollapseState, Is.EqualTo(ExpandCollapseState.Collapsed));
 
             ecp.Expand();
-            Assert.AreEqual(ExpandCollapseState.Expanded, ecp.Current.ExpandCollapseState);
+            Assert.That(ecp.Current.ExpandCollapseState, Is.EqualTo(ExpandCollapseState.Expanded));
         }
     }
 }

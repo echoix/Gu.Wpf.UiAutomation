@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "LabelWindow");
             var window = app.MainWindow;
             var label = window.FindLabel(key);
-            Assert.AreEqual(header, label.Text);
+            Assert.That(label.Text, Is.EqualTo(header));
             Assert.NotNull(label.FindTextBlock());
             Assert.IsInstanceOf<Label>(UiElement.FromAutomationElement(label.AutomationElement));
         }

@@ -22,15 +22,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tree = window.FindTreeView();
             Assert.IsNull(tree.SelectedTreeViewItem);
-            Assert.AreEqual(2, tree.Items.Count);
+            Assert.That(tree.Items.Count, Is.EqualTo(2));
             var treeItem = tree.Items[0];
             treeItem.Expand();
             var item = treeItem.Items[1];
             item.Expand();
             item.Items[0].Select();
-            Assert.AreEqual(true, item.Items[0].IsSelected);
+            Assert.That(item.Items[0].IsSelected, Is.EqualTo(true));
             Assert.NotNull(tree.SelectedTreeViewItem);
-            Assert.AreEqual("Lvl3 a", tree.SelectedTreeViewItem.Text);
+            Assert.That(tree.SelectedTreeViewItem.Text, Is.EqualTo("Lvl3 a"));
         }
 
         [Test]
@@ -40,13 +40,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tree = window.FindTreeView();
             var item = tree.Items[0];
-            Assert.AreEqual(false, item.IsExpanded);
+            Assert.That(item.IsExpanded, Is.EqualTo(false));
 
             item.IsExpanded = true;
-            Assert.AreEqual(true, item.IsExpanded);
+            Assert.That(item.IsExpanded, Is.EqualTo(true));
 
             item.IsExpanded = false;
-            Assert.AreEqual(false, item.IsExpanded);
+            Assert.That(item.IsExpanded, Is.EqualTo(false));
         }
     }
 }

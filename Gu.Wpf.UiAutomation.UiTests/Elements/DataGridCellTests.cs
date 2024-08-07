@@ -24,16 +24,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.AreEqual(expected, dataGrid[0, 0].IsReadOnly);
-            Assert.AreEqual(expected, dataGrid[0, 1].IsReadOnly);
-            Assert.AreEqual(expected, dataGrid[1, 0].IsReadOnly);
-            Assert.AreEqual(expected, dataGrid[1, 1].IsReadOnly);
-            Assert.AreEqual(expected, dataGrid[2, 0].IsReadOnly);
-            Assert.AreEqual(expected, dataGrid[2, 1].IsReadOnly);
+            Assert.That(dataGrid[0, 0].IsReadOnly, Is.EqualTo(expected));
+            Assert.That(dataGrid[0, 1].IsReadOnly, Is.EqualTo(expected));
+            Assert.That(dataGrid[1, 0].IsReadOnly, Is.EqualTo(expected));
+            Assert.That(dataGrid[1, 1].IsReadOnly, Is.EqualTo(expected));
+            Assert.That(dataGrid[2, 0].IsReadOnly, Is.EqualTo(expected));
+            Assert.That(dataGrid[2, 1].IsReadOnly, Is.EqualTo(expected));
             if (name != "ReadOnlyDataGrid")
             {
-                Assert.AreEqual(expected, dataGrid[3, 0].IsReadOnly);
-                Assert.AreEqual(expected, dataGrid[3, 1].IsReadOnly);
+                Assert.That(dataGrid[3, 0].IsReadOnly, Is.EqualTo(expected));
+                Assert.That(dataGrid[3, 1].IsReadOnly, Is.EqualTo(expected));
             }
         }
 
@@ -48,12 +48,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.AreEqual(dataGrid, dataGrid[0, 0].ContainingDataGrid);
-            Assert.AreEqual(dataGrid, dataGrid[0, 1].ContainingDataGrid);
-            Assert.AreEqual(dataGrid, dataGrid[1, 0].ContainingDataGrid);
-            Assert.AreEqual(dataGrid, dataGrid[1, 1].ContainingDataGrid);
-            Assert.AreEqual(dataGrid, dataGrid[2, 0].ContainingDataGrid);
-            Assert.AreEqual(dataGrid, dataGrid[2, 1].ContainingDataGrid);
+            Assert.That(dataGrid[0, 0].ContainingDataGrid, Is.EqualTo(dataGrid));
+            Assert.That(dataGrid[0, 1].ContainingDataGrid, Is.EqualTo(dataGrid));
+            Assert.That(dataGrid[1, 0].ContainingDataGrid, Is.EqualTo(dataGrid));
+            Assert.That(dataGrid[1, 1].ContainingDataGrid, Is.EqualTo(dataGrid));
+            Assert.That(dataGrid[2, 0].ContainingDataGrid, Is.EqualTo(dataGrid));
+            Assert.That(dataGrid[2, 1].ContainingDataGrid, Is.EqualTo(dataGrid));
         }
 
         [TestCase("DataGrid")]
@@ -65,11 +65,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.AreEqual(false, dataGrid[0, 0].IsNewItemPlaceholder);
-            Assert.AreEqual(true, dataGrid[dataGrid.RowCount - 1, 0].IsNewItemPlaceholder);
-            Assert.AreEqual(string.Empty, dataGrid[dataGrid.RowCount - 1, 0].Value);
-            Assert.AreEqual(true, dataGrid[dataGrid.RowCount - 1, 1].IsNewItemPlaceholder);
-            Assert.AreEqual(string.Empty, dataGrid[dataGrid.RowCount - 1, 1].Value);
+            Assert.That(dataGrid[0, 0].IsNewItemPlaceholder, Is.EqualTo(false));
+            Assert.That(dataGrid[dataGrid.RowCount - 1, 0].IsNewItemPlaceholder, Is.EqualTo(true));
+            Assert.That(dataGrid[dataGrid.RowCount - 1, 0].Value, Is.EqualTo(string.Empty));
+            Assert.That(dataGrid[dataGrid.RowCount - 1, 1].IsNewItemPlaceholder, Is.EqualTo(true));
+            Assert.That(dataGrid[dataGrid.RowCount - 1, 1].Value, Is.EqualTo(string.Empty));
         }
 
         [TestCase("DataGrid")]
@@ -81,38 +81,38 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
 
-            Assert.AreEqual("1", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[0, 0].Enter("11");
-            Assert.AreEqual("1", dataGrid[0, 0].Value);
-            Assert.AreEqual("11", dataGrid[0, 0].FindTextBox().Text);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+            Assert.That(dataGrid[0, 0].FindTextBox().Text, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[1, 1].Click();
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
-            Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 0].FindTextBlock().Text, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[0, 0].Enter("111");
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
         }
 
         [Test]
@@ -122,29 +122,29 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid("TemplateColumnDataGrid");
 
-            Assert.AreEqual("1", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[0, 0].Enter("11");
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
-            Assert.AreEqual("11", dataGrid[0, 0].FindTextBox().Text);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 0].FindTextBox().Text, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[0, 0].Enter("111");
-            Assert.AreEqual("111", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("111"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
         }
 
         [TestCase("DataGrid")]
@@ -156,21 +156,21 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid(name);
 
             var cell = dataGrid[0, 0];
-            Assert.AreEqual("1", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("1"));
 
             cell.Enter("a");
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
-            Assert.AreEqual("1", cell.Value);
-            Assert.AreEqual("a", cell.FindTextBox().Text);
+            Assert.That(cell.Value, Is.EqualTo("1"));
+            Assert.That(cell.FindTextBox().Text, Is.EqualTo("a"));
 
             cell.Enter("11");
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
-            Assert.AreEqual("11", cell.Value);
-            Assert.AreEqual("11", cell.FindTextBlock().Text);
+            Assert.That(cell.Value, Is.EqualTo("11"));
+            Assert.That(cell.FindTextBlock().Text, Is.EqualTo("11"));
         }
 
         [Test]
@@ -181,21 +181,21 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid("TemplateColumnDataGrid");
 
             var cell = dataGrid[0, 0];
-            Assert.AreEqual("1", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("1"));
 
             cell.Enter("a");
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
-            Assert.AreEqual("a", cell.Value);
-            Assert.AreEqual("a", cell.FindTextBox().Text);
+            Assert.That(cell.Value, Is.EqualTo("a"));
+            Assert.That(cell.FindTextBox().Text, Is.EqualTo("a"));
 
             cell.Enter("11");
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
             Keyboard.Type(Key.TAB);
-            Assert.AreEqual("11", cell.Value);
-            Assert.AreEqual("11", cell.FindTextBlock().Text);
+            Assert.That(cell.Value, Is.EqualTo("11"));
+            Assert.That(cell.FindTextBlock().Text, Is.EqualTo("11"));
         }
 
         [TestCase("DataGrid")]
@@ -208,38 +208,38 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
 
-            Assert.AreEqual("1", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[0, 0].Value = "11";
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 3", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
 
             dataGrid[2, 1].Value = "Item 5";
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
-            Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 5", dataGrid[2, 1].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 0].FindTextBlock().Text, Is.EqualTo("11"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 5"));
 
             dataGrid[0, 0].Value = "111";
-            Assert.AreEqual("111", dataGrid[0, 0].Value);
-            Assert.AreEqual("Item 1", dataGrid[0, 1].Value);
-            Assert.AreEqual("2", dataGrid[1, 0].Value);
-            Assert.AreEqual("Item 2", dataGrid[1, 1].Value);
-            Assert.AreEqual("3", dataGrid[2, 0].Value);
-            Assert.AreEqual("Item 5", dataGrid[2, 1].Value);
-            Assert.AreEqual("Item 5", dataGrid[2, 1].FindTextBlock().Text);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("111"));
+            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 5"));
+            Assert.That(dataGrid[2, 1].FindTextBlock().Text, Is.EqualTo("Item 5"));
         }
 
         [TestCase("DataGrid")]
@@ -253,11 +253,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid(name);
 
             var cell = dataGrid[0, 0];
-            Assert.AreEqual("1", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("1"));
 
             cell.Click();
             cell.Value = "11";
-            Assert.AreEqual("11", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("11"));
         }
 
         [TestCase("DataGrid")]
@@ -271,12 +271,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid(name);
 
             var cell = dataGrid[0, 0];
-            Assert.AreEqual("1", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("1"));
 
             cell.Click();
             cell.Click();
             cell.Value = "11";
-            Assert.AreEqual("11", cell.Value);
+            Assert.That(cell.Value, Is.EqualTo("11"));
         }
 
         [Explicit("Dunno if this is possible.")]
@@ -291,7 +291,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
 
             var cell = dataGrid[0, 0];
             var exception = Assert.Throws<InvalidOperationException>(() => cell.Value = "a");
-            Assert.AreEqual("Failed setting value.", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo("Failed setting value."));
         }
 
         [Test]
@@ -302,14 +302,14 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid("DataGrid");
             var readOnly = window.FindDataGrid("ReadOnlyDataGrid");
 
-            Assert.AreEqual("1", dataGrid[0, 0].Value);
-            Assert.AreEqual("1", readOnly[0, 0].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+            Assert.That(readOnly[0, 0].Value, Is.EqualTo("1"));
 
             dataGrid[0, 0].Value = "11";
-            Assert.AreEqual("11", dataGrid[0, 0].Value);
+            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("11"));
             Assert.Inconclusive("Figure out the least ugly way here.");
             //// ReSharper disable once HeuristicUnreachableCode
-            Assert.AreEqual("11", readOnly[0, 0].Value);
+            Assert.That(readOnly[0, 0].Value, Is.EqualTo("11"));
         }
 
         [TestCase("DataGrid10", 9)]
@@ -321,8 +321,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var dataGrid = window.FindDataGrid(name);
             dataGrid[row, 0].Value = "-1";
             dataGrid[row, 1].Value = "Item -1";
-            Assert.AreEqual("-1", dataGrid[row, 0].Value);
-            Assert.AreEqual("Item -1", dataGrid[row, 1].Value);
+            Assert.That(dataGrid[row, 0].Value, Is.EqualTo("-1"));
+            Assert.That(dataGrid[row, 1].Value, Is.EqualTo("Item -1"));
         }
 
         [TestCase("DataGrid10")]
@@ -331,8 +331,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.AreEqual("10", dataGrid[9, 0].Value);
-            Assert.AreEqual("Item 10", dataGrid[9, 1].Value);
+            Assert.That(dataGrid[9, 0].Value, Is.EqualTo("10"));
+            Assert.That(dataGrid[9, 1].Value, Is.EqualTo("Item 10"));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "TextBlockWindow");
             var window = app.MainWindow;
             var textBlock = window.FindTextBlock(key);
-            Assert.AreEqual(expected, textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo(expected));
             Assert.IsInstanceOf<TextBlock>(UiElement.FromAutomationElement(textBlock.AutomationElement));
         }
     }

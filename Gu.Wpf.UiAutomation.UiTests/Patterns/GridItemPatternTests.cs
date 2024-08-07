@@ -15,13 +15,13 @@
             var cell = window.FindDataGrid()[0, 0];
             Assert.NotNull(cell);
             var pattern = cell.AutomationElement.GridItemPattern();
-            Assert.AreEqual(0, pattern.Current.Row);
-            Assert.AreEqual(1, pattern.Current.RowSpan);
+            Assert.That(pattern.Current.Row, Is.EqualTo(0));
+            Assert.That(pattern.Current.RowSpan, Is.EqualTo(1));
 
-            Assert.AreEqual(0, pattern.Current.Column);
-            Assert.AreEqual(1, pattern.Current.ColumnSpan);
+            Assert.That(pattern.Current.Column, Is.EqualTo(0));
+            Assert.That(pattern.Current.ColumnSpan, Is.EqualTo(1));
 
-            Assert.AreEqual("DataGrid", pattern.Current.ContainingGrid.ClassName());
+            Assert.That(pattern.Current.ContainingGrid.ClassName(), Is.EqualTo("DataGrid"));
         }
     }
 }

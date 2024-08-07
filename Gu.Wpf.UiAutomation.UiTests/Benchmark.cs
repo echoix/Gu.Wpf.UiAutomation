@@ -17,7 +17,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             // for side effect of having the app open.
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
         }
 
         [OneTimeTearDown]
@@ -55,7 +55,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             var findCheckBox = sw.Elapsed;
             var isChecked = checkBox.IsChecked;
             sw.Stop();
-            Assert.AreEqual(false, isChecked);
+            Assert.That(isChecked, Is.EqualTo(false));
             Console.WriteLine($"Launch:       {launch.TotalMilliseconds:F0} ms");
             Console.WriteLine($"MainWindow:   {mainWindow.TotalMilliseconds - launch.TotalMilliseconds:F0} ms ({mainWindow.TotalMilliseconds:F0})");
             Console.WriteLine($"FindCheckBox: {findCheckBox.TotalMilliseconds - mainWindow.TotalMilliseconds:F0} ms  ({findCheckBox.TotalMilliseconds:F0})");
@@ -74,7 +74,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             var findCheckBox = sw.Elapsed;
             var isChecked = checkBox.IsChecked;
             sw.Stop();
-            Assert.AreEqual(false, isChecked);
+            Assert.That(isChecked, Is.EqualTo(false));
             Console.WriteLine($"AttachOrLaunch: {launch.TotalMilliseconds:F0} ms");
             Console.WriteLine($"MainWindow:     {mainWindow.TotalMilliseconds - launch.TotalMilliseconds:F0} ms  ({mainWindow.TotalMilliseconds:F0})");
             Console.WriteLine($"FindCheckBox:   {findCheckBox.TotalMilliseconds - mainWindow.TotalMilliseconds:F0} ms ({findCheckBox.TotalMilliseconds:F0})");
@@ -97,7 +97,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
 
             var findCheckBox = sw.Elapsed;
             sw.Stop();
-            Assert.AreEqual(100, results.Count);
+            Assert.That(results.Count, Is.EqualTo(100));
             Console.WriteLine($"Launch:       {launch.TotalMilliseconds:F0} ms");
             Console.WriteLine($"MainWindow:   {mainWindow.TotalMilliseconds - launch.TotalMilliseconds:F0} ms ({mainWindow.TotalMilliseconds:F0})");
             Console.WriteLine($"FindCheckBox: {findCheckBox.TotalMilliseconds - mainWindow.TotalMilliseconds:F0} ms  ({findCheckBox.TotalMilliseconds:F0})");

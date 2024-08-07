@@ -21,9 +21,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "ProgressBarWindow");
             var window = app.MainWindow;
             var progressBar = window.FindProgressBar();
-            Assert.AreEqual(0, progressBar.Minimum);
-            Assert.AreEqual(100, progressBar.Maximum);
-            Assert.AreEqual(50, progressBar.Value);
+            Assert.That(progressBar.Minimum, Is.EqualTo(0));
+            Assert.That(progressBar.Maximum, Is.EqualTo(100));
+            Assert.That(progressBar.Value, Is.EqualTo(50));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var titleBar = window.FindTitleBar();
             titleBar.MinimizeButton.Invoke();
-            Assert.AreEqual(WindowVisualState.Minimized, window.WindowPattern.Current.WindowVisualState);
+            Assert.That(window.WindowPattern.Current.WindowVisualState, Is.EqualTo(WindowVisualState.Minimized));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var titleBar = window.FindTitleBar();
             titleBar.MaximizeButton.Invoke();
-            Assert.AreEqual(WindowVisualState.Maximized, window.WindowPattern.Current.WindowVisualState);
+            Assert.That(window.WindowPattern.Current.WindowVisualState, Is.EqualTo(WindowVisualState.Maximized));
         }
 
         [Test]
@@ -52,9 +52,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var titleBar = window.FindTitleBar();
             titleBar.MaximizeButton.Invoke();
-            Assert.AreEqual(WindowVisualState.Maximized, window.WindowPattern.Current.WindowVisualState);
+            Assert.That(window.WindowPattern.Current.WindowVisualState, Is.EqualTo(WindowVisualState.Maximized));
             titleBar.RestoreButton.Invoke();
-            Assert.AreEqual(WindowVisualState.Normal, window.WindowPattern.Current.WindowVisualState);
+            Assert.That(window.WindowPattern.Current.WindowVisualState, Is.EqualTo(WindowVisualState.Normal));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("SizeButton");
             var parent = button.Parent;
-            Assert.AreEqual(window.AutomationElement, parent.AutomationElement);
+            Assert.That(parent.AutomationElement, Is.EqualTo(window.AutomationElement));
         }
 
         [Test]
@@ -32,8 +32,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("SizeButton");
             var buttonWindow = button.Window;
-            Assert.AreEqual(window.AutomationElement, buttonWindow.AutomationElement);
-            Assert.AreEqual(true, buttonWindow.IsMainWindow);
+            Assert.That(buttonWindow.AutomationElement, Is.EqualTo(window.AutomationElement));
+            Assert.That(buttonWindow.IsMainWindow, Is.EqualTo(true));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "TextBoxWindow");
             var window = app.MainWindow;
             var textBox = window.FindTextBox();
-            Assert.AreEqual(true, textBox.IsKeyboardFocusable);
+            Assert.That(textBox.IsKeyboardFocusable, Is.EqualTo(true));
         }
 
         [Test]
@@ -51,10 +51,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "TextBoxWindow");
             var window = app.MainWindow;
             var textBox = window.FindTextBox();
-            Assert.AreEqual(false, textBox.HasKeyboardFocus);
+            Assert.That(textBox.HasKeyboardFocus, Is.EqualTo(false));
 
             textBox.Click();
-            Assert.AreEqual(true, textBox.HasKeyboardFocus);
+            Assert.That(textBox.HasKeyboardFocus, Is.EqualTo(true));
 
             Keyboard.ClearFocus();
         }
@@ -65,8 +65,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SizeWindow");
             var window = app.MainWindow;
             var button = window.FindButton("SizeButton");
-            Assert.AreEqual(200, button.ActualWidth);
-            Assert.AreEqual(100, button.ActualHeight);
+            Assert.That(button.ActualWidth, Is.EqualTo(200));
+            Assert.That(button.ActualHeight, Is.EqualTo(100));
         }
 
         [Test]
@@ -78,15 +78,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             window.MoveTo(100, 200);
             if (WindowsVersion.IsWindows7())
             {
-                Assert.AreEqual(new System.Windows.Rect(150, 311, 200, 100), button.Bounds);
-                Assert.AreEqual(new System.Windows.Rect(100, 200, 300, 300), window.Bounds);
-                Assert.AreEqual(new System.Windows.Rect(50, 111, 200, 100), button.RenderBounds);
+                Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
+                Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
+                Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
             }
             else
             {
-                Assert.AreEqual(new System.Windows.Rect(150, 311, 200, 100), button.Bounds);
-                Assert.AreEqual(new System.Windows.Rect(100, 200, 300, 300), window.Bounds);
-                Assert.AreEqual(new System.Windows.Rect(50, 111, 200, 100), button.RenderBounds);
+                Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
+                Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
+                Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
             }
         }
 

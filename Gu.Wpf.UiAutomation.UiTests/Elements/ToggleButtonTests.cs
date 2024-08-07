@@ -31,16 +31,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var toggleButton = window.FindToggleButton("Test ToggleButton");
             toggleButton.IsChecked = true;
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
 
             toggleButton.IsChecked = false;
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
 
             toggleButton.IsChecked = true;
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
 
             var exception = Assert.Throws<UiAutomationException>(() => toggleButton.IsChecked = null);
-            Assert.AreEqual($"Setting ToggleButton Test ToggleButton.IsChecked to null failed.", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo($"Setting ToggleButton Test ToggleButton.IsChecked to null failed."));
         }
 
         [Test]
@@ -50,16 +50,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var toggleButton = window.FindToggleButton("3-Way Test ToggleButton");
             toggleButton.IsChecked = true;
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
 
             toggleButton.IsChecked = false;
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
 
             toggleButton.IsChecked = null;
-            Assert.AreEqual(null, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(null));
 
             toggleButton.IsChecked = true;
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
         }
 
         [Test]
@@ -69,16 +69,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var toggleButton = window.FindToggleButton("Test ToggleButton");
             toggleButton.IsChecked = false;
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
 
             toggleButton.Click();
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
 
             toggleButton.Click();
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
 
             toggleButton.Click();
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
         }
 
         [Test]
@@ -88,16 +88,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var toggleButton = window.FindToggleButton("3-Way Test ToggleButton");
             toggleButton.IsChecked = false;
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
 
             toggleButton.Click();
-            Assert.AreEqual(true, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(true));
 
             toggleButton.Click();
-            Assert.AreEqual(null, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(null));
 
             toggleButton.Click();
-            Assert.AreEqual(false, toggleButton.IsChecked);
+            Assert.That(toggleButton.IsChecked, Is.EqualTo(false));
         }
     }
 }

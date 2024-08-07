@@ -14,18 +14,18 @@
             var slider = window.FindSlider();
             Assert.NotNull(slider);
             var rvPattern = slider.AutomationElement.RangeValuePattern();
-            Assert.AreEqual(false, rvPattern.Current.IsReadOnly);
-            Assert.AreEqual(5, rvPattern.Current.Value);
-            Assert.AreEqual(4, rvPattern.Current.LargeChange);
-            Assert.AreEqual(1, rvPattern.Current.SmallChange);
-            Assert.AreEqual(0, rvPattern.Current.Minimum);
-            Assert.AreEqual(10, rvPattern.Current.Maximum);
+            Assert.That(rvPattern.Current.IsReadOnly, Is.EqualTo(false));
+            Assert.That(rvPattern.Current.Value, Is.EqualTo(5));
+            Assert.That(rvPattern.Current.LargeChange, Is.EqualTo(4));
+            Assert.That(rvPattern.Current.SmallChange, Is.EqualTo(1));
+            Assert.That(rvPattern.Current.Minimum, Is.EqualTo(0));
+            Assert.That(rvPattern.Current.Maximum, Is.EqualTo(10));
 
             rvPattern.SetValue(6);
-            Assert.AreEqual(6, rvPattern.Current.Value);
+            Assert.That(rvPattern.Current.Value, Is.EqualTo(6));
 
             rvPattern.SetValue(3);
-            Assert.AreEqual(3, rvPattern.Current.Value);
+            Assert.That(rvPattern.Current.Value, Is.EqualTo(3));
         }
     }
 }

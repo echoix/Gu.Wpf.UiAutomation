@@ -28,7 +28,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridColumnHeader)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeader);
-            Assert.AreEqual("IntValue", header.Text);
+            Assert.That(header.Text, Is.EqualTo("IntValue"));
             Assert.NotNull(header.LeftHeaderGripper);
             Assert.NotNull(header.RightHeaderGripper);
         }

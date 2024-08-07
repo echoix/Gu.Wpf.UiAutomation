@@ -68,7 +68,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             calc.ButtonEquals.Click();
             app.WaitWhileBusy();
             var result = calc.Result;
-            Assert.AreEqual("6912", result);
+            Assert.That(result, Is.EqualTo("6912"));
 
             // Date comparison
             using (Keyboard.Hold(Key.CONTROL))
