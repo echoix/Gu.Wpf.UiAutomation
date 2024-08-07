@@ -41,8 +41,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
             Assert.That(row.Cells.Count, Is.EqualTo(2));
-            CollectionAssert.AllItemsAreInstancesOfType(row.Cells, typeof(DataGridCell));
-            CollectionAssert.AreEqual(new[] { "1", "Item 1" }, row.Cells.Select(x => x.Value));
+            Assert.That(row.Cells, Is.All.InstanceOf(typeof(DataGridCell)));
+            Assert.That(row.Cells.Select(x => x.Value), Is.EqualTo(new[] { "1", "Item 1" }).AsCollection);
         }
     }
 }

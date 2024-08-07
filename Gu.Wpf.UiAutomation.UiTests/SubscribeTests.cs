@@ -32,27 +32,27 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 ValuePattern.ValueProperty,
                 (sender, args) => actual.Add($"{((AutomationElement)sender).Current.AutomationId}.{args.Property.ProgrammaticName.Split('.')[1]} = {args.NewValue}")))
             {
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = "abc";
                 Wait.For(TimeSpan.FromMilliseconds(50));
                 expected.Add("TextBox1.ValueProperty = abc");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = string.Empty;
                 Wait.For(TimeSpan.FromMilliseconds(50));
                 expected.Add("TextBox1.ValueProperty = ");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = "abc";
                 Wait.For(TimeSpan.FromMilliseconds(50));
                 expected.Add("TextBox1.ValueProperty = abc");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
             }
 
             // Checking that we stopped subscribing when disposing
             textBox.Text = string.Empty;
-            CollectionAssert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -69,27 +69,27 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 ValuePattern.ValueProperty,
                 (sender, args) => actual.Add($"{sender.AutomationId}.{args.Property.ProgrammaticName.Split('.')[1]} = {args.NewValue}")))
             {
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = "abc";
                 Wait.UntilInputIsProcessed();
                 expected.Add("TextBox1.ValueProperty = abc");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = string.Empty;
                 Wait.UntilInputIsProcessed();
                 expected.Add("TextBox1.ValueProperty = ");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
 
                 textBox.Text = "abc";
                 Wait.UntilInputIsProcessed();
                 expected.Add("TextBox1.ValueProperty = abc");
-                CollectionAssert.AreEqual(expected, actual);
+                Assert.That(actual, Is.EqualTo(expected).AsCollection);
             }
 
             // Checking that we stopped subscribing when disposing
             textBox.Text = string.Empty;
-            CollectionAssert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -109,13 +109,13 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 var textBox = window.FindTextBox("TextBox2");
                 textBox.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                CollectionAssert.AreEqual(new[] { 20005 }, changes);
+                Assert.That(changes, Is.EqualTo(new[] { 20005 }).AsCollection);
                 Assert.That(window.FocusedElement(), Is.EqualTo(textBox));
 
                 var button = window.FindButton("Button1");
                 button.Focus();
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                CollectionAssert.AreEqual(new[] { 20005, 20005 }, changes);
+                Assert.That(changes, Is.EqualTo(new[] { 20005, 20005 }).AsCollection);
                 Assert.That(window.FocusedElement(), Is.EqualTo(button));
             }
         }

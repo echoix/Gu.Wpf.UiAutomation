@@ -79,7 +79,7 @@
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
             var children = window.AutomationElement.FindAllChildren(Conditions.TextBlock);
-            CollectionAssert.AreEqual(new[] { "TextBlock1", "TextBlock2" }, children.OfType<AutomationElement>().Select(x => x.Name()));
+            Assert.That(children.OfType<AutomationElement>().Select(x => x.Name()), Is.EqualTo(new[] { "TextBlock1", "TextBlock2" }).AsCollection);
         }
 
         [Test]
@@ -88,7 +88,7 @@
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
             var children = window.AutomationElement.FindAllChildren(Conditions.Label);
-            CollectionAssert.AreEqual(new[] { "Label1", "Label2" }, children.OfType<AutomationElement>().Select(x => x.Name()));
+            Assert.That(children.OfType<AutomationElement>().Select(x => x.Name()), Is.EqualTo(new[] { "Label1", "Label2" }).AsCollection);
         }
 
         [Test]
@@ -97,7 +97,7 @@
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
             var children = window.AutomationElement.FindAllChildren(Conditions.TextBox);
-            CollectionAssert.AreEqual(new[] { "TextBox1", "TextBox2" }, children.OfType<AutomationElement>().Select(x => x.ValuePattern().Current.Value));
+            Assert.That(children.OfType<AutomationElement>().Select(x => x.ValuePattern().Current.Value), Is.EqualTo(new[] { "TextBox1", "TextBox2" }).AsCollection);
         }
     }
 }

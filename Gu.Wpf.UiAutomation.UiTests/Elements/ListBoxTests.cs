@@ -31,7 +31,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListBoxWindow");
             var window = app.MainWindow;
             var listBox = window.FindListBox(name);
-            CollectionAssert.AreEqual(expected, listBox.Items.Select(x => x.Text));
+            Assert.That(listBox.Items.Select(x => x.Text), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 "9",
                 "10",
             };
-            CollectionAssert.AreEqual(expected, listBox.Items.Select(x => x.Text));
+            Assert.That(listBox.Items.Select(x => x.Text), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]

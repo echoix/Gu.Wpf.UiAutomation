@@ -77,7 +77,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 };
 
             Dump(events);
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "TouchLeave Position: 260,310",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
         }
 
         [TestCase(0)]
@@ -140,7 +140,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             };
             if (milliseconds == 0)
             {
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
             }
             else
             {
@@ -181,7 +181,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "TouchLeave Position: 260,310",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
         }
 
         [Test]
@@ -247,7 +247,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "ManipulationCompleted",
                     "TouchLeave Position: 299,299",
                 };
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
         }
 
         [Test]
@@ -311,7 +311,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "TouchLeave Position: 213,263",
                 };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
         }
 
         [Test]
@@ -357,11 +357,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "ManipulationCompleted",
                     "TouchLeave Position: 249,299",
                 };
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
 
             window.FindButton("Clear").Click(moveMouse: true);
             window.WaitUntilResponsive();
-            CollectionAssert.IsEmpty(events.Items);
+            Assert.That(events.Items, Is.Empty);
             Assert.That(Mouse.GetCursorState(), Is.EqualTo(CursorState.CURSOR_SHOWING));
         }
 
@@ -409,11 +409,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "TouchLeave Position: 249,299",
                 };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray(), EventStringComparer.Default);
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).Using(EventStringComparer.Default));
 
             window.FindButton("Clear").Click();
             window.WaitUntilResponsive();
-            CollectionAssert.IsEmpty(events.Items);
+            Assert.That(events.Items, Is.Empty);
             Assert.That(Mouse.GetCursorState(), Is.EqualTo(CursorState.CURSOR_SHOWING));
         }
 

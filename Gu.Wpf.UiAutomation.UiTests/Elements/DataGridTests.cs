@@ -69,7 +69,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            CollectionAssert.AreEqual(expected, dataGrid.Rows.Select(x => string.Join(", ", x.Cells.Select(c => c.Value))));
+            Assert.That(dataGrid.Rows.Select(x => string.Join(", ", x.Cells.Select(c => c.Value))), Is.EqualTo(expected).AsCollection);
         }
 
         [TestCase("DataGrid", new[] { "Row 1", "Row 2", "Row 3", "" })]
@@ -87,7 +87,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            CollectionAssert.AreEqual(expected, dataGrid.Rows.Select(x => x.Header.Text));
+            Assert.That(dataGrid.Rows.Select(x => x.Header.Text), Is.EqualTo(expected).AsCollection);
         }
 
         [TestCase("DataGrid", 0, "Row 1")]

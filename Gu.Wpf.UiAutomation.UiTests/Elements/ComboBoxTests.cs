@@ -58,7 +58,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(id);
-            CollectionAssert.AllItemsAreInstancesOfType(comboBox.Items, typeof(ComboBoxItem));
+            Assert.That(comboBox.Items, Is.All.InstanceOf(typeof(ComboBoxItem)));
             Assert.That(comboBox.Items.Select(x => x.Text), Is.EqualTo(new[] { "Item 1", "Item 2", "Item 3" }));
         }
 

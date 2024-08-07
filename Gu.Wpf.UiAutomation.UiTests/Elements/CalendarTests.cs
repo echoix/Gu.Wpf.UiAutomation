@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CalendarWindow");
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
-            CollectionAssert.AllItemsAreInstancesOfType(calendar.Items, typeof(CalendarDayButton));
+            Assert.That(calendar.Items, Is.All.InstanceOf(typeof(CalendarDayButton)));
             calendar.Items[3].Select();
         }
 
