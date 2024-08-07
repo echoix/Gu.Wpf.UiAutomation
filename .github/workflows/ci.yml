@@ -45,7 +45,7 @@ jobs:
       - name: Package Gu.Wpf.UiAutomation
         run: dotnet pack "${{ github.workspace }}/Gu.Wpf.UiAutomation/Gu.Wpf.UiAutomation.csproj" --configuration Release --output ${{ env.CI_NUGET_OUTPUT }}
       - name: Upload Artifacts (NuGet Packages)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuget
           if-no-files-found: error
@@ -58,7 +58,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Download Artifacts (NuGet Packages)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: nuget
           path: ${{ env.CI_NUGET_OUTPUT }}
