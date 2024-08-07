@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(key);
-            Assert.IsInstanceOf<ComboBox>(UiElement.FromAutomationElement(comboBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(comboBox.AutomationElement), Is.InstanceOf<ComboBox>());
         }
 
         [TestCase("EditableComboBox", true)]

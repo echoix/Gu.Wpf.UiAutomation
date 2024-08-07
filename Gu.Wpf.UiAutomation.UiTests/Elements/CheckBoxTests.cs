@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox(key);
-            Assert.IsInstanceOf<CheckBox>(UiElement.FromAutomationElement(checkBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(checkBox.AutomationElement), Is.InstanceOf<CheckBox>());
         }
 
         [TestCase(null)]

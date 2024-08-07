@@ -19,8 +19,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CalendarWindow");
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
-            Assert.IsInstanceOf<Calendar>(UiElement.FromAutomationElement(calendar.AutomationElement));
-            Assert.IsInstanceOf<CalendarDayButton>(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(calendar.AutomationElement), Is.InstanceOf<Calendar>());
+            Assert.That(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement), Is.InstanceOf<CalendarDayButton>());
         }
 
         [Test]

@@ -26,7 +26,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var expander = window.FindExpander(key);
             Assert.That(expander.HeaderText, Is.EqualTo(header));
             Assert.NotNull(expander.FindTextBlock());
-            Assert.IsInstanceOf<Expander>(UiElement.FromAutomationElement(expander.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(expander.AutomationElement), Is.InstanceOf<Expander>());
         }
 
         [TestCase("AutomationId", "1")]

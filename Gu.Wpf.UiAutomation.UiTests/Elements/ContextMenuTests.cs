@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.That(subMenuLevel2.Count, Is.EqualTo(1));
             var innerItem = subMenuLevel2[0];
             Assert.That(innerItem.Text, Is.EqualTo("Inner Context"));
-            Assert.IsInstanceOf<ContextMenu>(UiElement.FromAutomationElement(ctxMenu.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(ctxMenu.AutomationElement), Is.InstanceOf<ContextMenu>());
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.IsInstanceOf<DataGridRow>(UiElement.FromAutomationElement(header.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(header.AutomationElement), Is.InstanceOf<DataGridRow>());
         }
 
         [Test]

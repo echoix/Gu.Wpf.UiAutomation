@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid();
-            Assert.IsInstanceOf<DataGrid>(UiElement.FromAutomationElement(dataGrid.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(dataGrid.AutomationElement), Is.InstanceOf<DataGrid>());
         }
 
         [TestCase("DataGrid")]

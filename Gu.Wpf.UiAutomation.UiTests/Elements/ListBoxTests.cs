@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListBoxWindow");
             var window = app.MainWindow;
             var listBox = window.FindListBox(key);
-            Assert.IsInstanceOf<ListBox>(UiElement.FromAutomationElement(listBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(listBox.AutomationElement), Is.InstanceOf<ListBox>());
         }
 
         [TestCase("BoundListBox", new[] { "Johan", "Erik" })]
@@ -63,8 +63,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listBox = window.FindListBox("BoundListBox");
             Assert.That(listBox.Items.Count, Is.EqualTo(2));
-            Assert.IsInstanceOf<ListBoxItem>(listBox.Items[0]);
-            Assert.IsInstanceOf<ListBoxItem>(listBox.Items[1]);
+            Assert.That(listBox.Items[0], Is.InstanceOf<ListBoxItem>());
+            Assert.That(listBox.Items[1], Is.InstanceOf<ListBoxItem>());
             Assert.IsNull(listBox.SelectedItem);
             Assert.That(listBox.SelectedIndex, Is.EqualTo(-1));
 

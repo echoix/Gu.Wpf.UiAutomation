@@ -12,7 +12,7 @@
             using var app = Application.Launch(ExeFileName, "TreeViewWindow");
             var window = app.MainWindow;
             var treeViewItem = window.FindTreeView().Items[0];
-            Assert.IsInstanceOf<TreeViewItem>(UiElement.FromAutomationElement(treeViewItem.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(treeViewItem.AutomationElement), Is.InstanceOf<TreeViewItem>());
         }
     }
 }

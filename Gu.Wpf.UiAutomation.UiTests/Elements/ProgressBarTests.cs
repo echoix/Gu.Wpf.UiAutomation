@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "ProgressBarWindow");
             var window = app.MainWindow;
             var progressBar = window.FindProgressBar();
-            Assert.IsInstanceOf<ProgressBar>(UiElement.FromAutomationElement(progressBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(progressBar.AutomationElement), Is.InstanceOf<ProgressBar>());
         }
 
         [Test]

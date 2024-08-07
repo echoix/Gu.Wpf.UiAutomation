@@ -14,7 +14,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var textBox = window.FindTextBox(key);
             Assert.That(textBox.IsEnabled, Is.EqualTo(true));
-            Assert.IsInstanceOf<TextBox>(UiElement.FromAutomationElement(textBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(textBox.AutomationElement), Is.InstanceOf<TextBox>());
         }
 
         [TestCase("AutomationId", false)]

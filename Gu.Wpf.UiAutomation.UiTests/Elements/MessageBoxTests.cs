@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show MessageBox OKCancel").Click();
             var messageBox = window.FindMessageBox();
-            Assert.IsInstanceOf<MessageBox>(UiElement.FromAutomationElement(messageBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(messageBox.AutomationElement), Is.InstanceOf<MessageBox>());
             messageBox.Close();
         }
 

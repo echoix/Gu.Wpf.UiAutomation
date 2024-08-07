@@ -13,7 +13,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
             var titleBar = window.FindTitleBar();
-            Assert.IsInstanceOf<TitleBar>(UiElement.FromAutomationElement(titleBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(titleBar.AutomationElement), Is.InstanceOf<TitleBar>());
         }
 
         [Test]

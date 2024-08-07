@@ -51,7 +51,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
                 var checkBox = window.FindCheckBox();
-                Assert.IsInstanceOf<CheckBox>(checkBox);
+                Assert.That(checkBox, Is.InstanceOf<CheckBox>());
             }
 
             //// [TestCase("CheckBoxXName")]
@@ -123,7 +123,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                     1,
                     x => new CheckBox(x),
                     TimeSpan.FromMilliseconds(100));
-                Assert.IsInstanceOf<CheckBox>(child);
+                Assert.That(child, Is.InstanceOf<CheckBox>());
                 Assert.That(child.AutomationId, Is.EqualTo("XName"));
             }
 
@@ -139,7 +139,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                     x => new CheckBox(x),
                     TimeSpan.FromMilliseconds(100),
                     out var child), Is.EqualTo(true));
-                Assert.IsInstanceOf<CheckBox>(child);
+                Assert.That(child, Is.InstanceOf<CheckBox>());
                 Assert.Multiple(() =>
                 {
                     Assert.That(child.AutomationId, Is.EqualTo("XName"));

@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var presenter = (DataGridColumnHeadersPresenter)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeadersPresenter);
-            Assert.IsInstanceOf<DataGridColumnHeadersPresenter>(UiElement.FromAutomationElement(presenter.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(presenter.AutomationElement), Is.InstanceOf<DataGridColumnHeadersPresenter>());
         }
 
         [Test]

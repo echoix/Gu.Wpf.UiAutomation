@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ToggleButtonWindow");
             var window = app.MainWindow;
             var toggleButton = window.FindToggleButton(key);
-            Assert.IsInstanceOf<ToggleButton>(UiElement.FromAutomationElement(toggleButton.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(toggleButton.AutomationElement), Is.InstanceOf<ToggleButton>());
         }
 
         [Test]

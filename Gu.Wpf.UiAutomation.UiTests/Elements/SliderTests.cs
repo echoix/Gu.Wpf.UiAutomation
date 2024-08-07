@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SliderWindow");
             var window = app.MainWindow;
             var slider = window.FindSlider("Slider");
-            Assert.IsInstanceOf<Slider>(UiElement.FromAutomationElement(slider.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(slider.AutomationElement), Is.InstanceOf<Slider>());
         }
 
         [Test]

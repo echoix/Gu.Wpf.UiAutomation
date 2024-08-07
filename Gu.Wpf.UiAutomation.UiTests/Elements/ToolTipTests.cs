@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(toolTip.IsOffscreen, Is.EqualTo(false));
                 Assert.That(toolTip.Text, Is.EqualTo("Tool tip text."));
             });
-            Assert.IsInstanceOf<ToolTip>(UiElement.FromAutomationElement(toolTip.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(toolTip.AutomationElement), Is.InstanceOf<ToolTip>());
 
             window.FindButton("Lose focus").Click();
             Assert.That(toolTip.IsOffscreen, Is.EqualTo(true));
@@ -39,7 +39,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(toolTip.IsOffscreen, Is.EqualTo(false));
                 Assert.That(toolTip.Text, Is.EqualTo("Explicit tool tip text."));
             });
-            Assert.IsInstanceOf<ToolTip>(UiElement.FromAutomationElement(toolTip.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(toolTip.AutomationElement), Is.InstanceOf<ToolTip>());
 
             window.FindButton("Lose focus").Click();
             Assert.That(toolTip.IsOffscreen, Is.EqualTo(true));

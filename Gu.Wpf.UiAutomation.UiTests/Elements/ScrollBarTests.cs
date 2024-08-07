@@ -18,9 +18,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindHorizontalScrollBar();
-            Assert.IsInstanceOf<HorizontalScrollBar>(scrollBar);
+            Assert.That(scrollBar, Is.InstanceOf<HorizontalScrollBar>());
             Assert.That(scrollBar.AutomationId, Is.EqualTo("HorizontalScrollBar"));
-            Assert.IsInstanceOf<HorizontalScrollBar>(UiElement.FromAutomationElement(scrollBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(scrollBar.AutomationElement), Is.InstanceOf<HorizontalScrollBar>());
         }
 
         [Test]
@@ -29,9 +29,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindVerticalScrollBar();
-            Assert.IsInstanceOf<VerticalScrollBar>(scrollBar);
+            Assert.That(scrollBar, Is.InstanceOf<VerticalScrollBar>());
             Assert.That(scrollBar.AutomationId, Is.EqualTo("VerticalScrollBar"));
-            Assert.IsInstanceOf<VerticalScrollBar>(UiElement.FromAutomationElement(scrollBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(scrollBar.AutomationElement), Is.InstanceOf<VerticalScrollBar>());
         }
 
         [Test]

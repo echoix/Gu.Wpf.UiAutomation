@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListViewWindow");
             var window = app.MainWindow;
             var listView = window.FindListView();
-            Assert.IsInstanceOf<ListView>(UiElement.FromAutomationElement(listView.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(listView.AutomationElement), Is.InstanceOf<ListView>());
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var presenter = listView.ColumnHeadersPresenter;
-            Assert.IsInstanceOf<GridViewHeaderRowPresenter>(UiElement.FromAutomationElement(presenter.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(presenter.AutomationElement), Is.InstanceOf<GridViewHeaderRowPresenter>());
             Assert.That(presenter.Headers.Count, Is.EqualTo(2));
 
             Assert.Multiple(() =>
@@ -93,9 +93,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var listView = window.FindListView();
             var cell = listView[row, column];
-            Assert.IsInstanceOf<GridViewCell>(cell);
+            Assert.That(cell, Is.InstanceOf<GridViewCell>());
             Assert.That(cell.Text, Is.EqualTo(expected));
-            Assert.IsInstanceOf<GridViewCell>(UiElement.FromAutomationElement(cell.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(cell.AutomationElement), Is.InstanceOf<GridViewCell>());
         }
 
         [Test]

@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var tabControl = window.FindTabControl();
-            Assert.IsInstanceOf<TabControl>(UiElement.FromAutomationElement(tabControl.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(tabControl.AutomationElement), Is.InstanceOf<TabControl>());
         }
 
         [Test]

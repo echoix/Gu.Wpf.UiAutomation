@@ -31,7 +31,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Converters
             using var app = Application.Launch(ExeFileName);
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
-            Assert.IsInstanceOf<System.Windows.Rect>(checkBox.Bounds);
+            Assert.That(checkBox.Bounds, Is.InstanceOf<System.Windows.Rect>());
         }
     }
 }

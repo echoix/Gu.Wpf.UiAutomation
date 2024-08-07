@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TreeViewWindow");
             var window = app.MainWindow;
             var treeView = window.FindTreeView();
-            Assert.IsInstanceOf<TreeView>(UiElement.FromAutomationElement(treeView.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(treeView.AutomationElement), Is.InstanceOf<TreeView>());
         }
 
         [Test]

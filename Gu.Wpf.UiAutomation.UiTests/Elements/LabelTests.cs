@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var label = window.FindLabel(key);
             Assert.That(label.Text, Is.EqualTo(header));
             Assert.NotNull(label.FindTextBlock());
-            Assert.IsInstanceOf<Label>(UiElement.FromAutomationElement(label.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(label.AutomationElement), Is.InstanceOf<Label>());
         }
     }
 }

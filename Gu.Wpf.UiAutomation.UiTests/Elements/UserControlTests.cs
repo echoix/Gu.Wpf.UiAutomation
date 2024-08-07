@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(userControl.FindTextBlock().Text, Is.EqualTo(expected));
                 Assert.That(((TextBlock)userControl.Content).Text, Is.EqualTo(expected));
             });
-            Assert.IsInstanceOf<UserControl>(UiElement.FromAutomationElement(userControl.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(userControl.AutomationElement), Is.InstanceOf<UserControl>());
         }
     }
 }

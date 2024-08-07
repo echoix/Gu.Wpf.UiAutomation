@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "MenuWindow");
             var window = app.MainWindow;
             var menu = window.FindMenu();
-            Assert.IsInstanceOf<Menu>(UiElement.FromAutomationElement(menu.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(menu.AutomationElement), Is.InstanceOf<Menu>());
         }
 
         [Test]

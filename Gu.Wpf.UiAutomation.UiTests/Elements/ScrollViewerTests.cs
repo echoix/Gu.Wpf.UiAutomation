@@ -23,7 +23,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(scrollViewer.HorizontalScrollBar.AutomationId, Is.EqualTo("HorizontalScrollBar"));
                 Assert.That(scrollViewer.VerticalScrollBar.AutomationId, Is.EqualTo("VerticalScrollBar"));
             });
-            Assert.IsInstanceOf<ScrollViewer>(UiElement.FromAutomationElement(scrollViewer.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(scrollViewer.AutomationElement), Is.InstanceOf<ScrollViewer>());
         }
 
         [Test]

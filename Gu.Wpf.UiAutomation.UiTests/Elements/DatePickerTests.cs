@@ -14,8 +14,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "DatePickerWindow");
             var window = app.MainWindow;
             var datePicker = window.FindDatePicker();
-            Assert.IsInstanceOf<DatePicker>(datePicker);
-            Assert.IsInstanceOf<DatePicker>(UiElement.FromAutomationElement(datePicker.AutomationElement));
+            Assert.That(datePicker, Is.InstanceOf<DatePicker>());
+            Assert.That(UiElement.FromAutomationElement(datePicker.AutomationElement), Is.InstanceOf<DatePicker>());
         }
 
         [Test]
