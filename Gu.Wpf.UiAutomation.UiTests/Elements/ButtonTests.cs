@@ -23,7 +23,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ButtonWindow");
             var window = app.MainWindow;
             var button = window.FindButton(key);
-            Assert.IsAssignableFrom<Button>(UiElement.FromAutomationElement(button.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(button.AutomationElement), Is.AssignableFrom<Button>());
         }
 
         [TestCase("AutomationId", "AutomationProperties.AutomationId")]

@@ -37,7 +37,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             var window2 = app.MainWindow;
             sw.Stop();
             Assert.That(window1, Is.Not.Null);
-            Assert.AreSame(window1, window2);
+            Assert.That(window2, Is.SameAs(window1));
             Console.WriteLine($"Launch:       {launch.TotalMilliseconds:F0} ms");
             Console.WriteLine($"MainWindow 1: {firstWindow.TotalMilliseconds - launch.TotalMilliseconds:F0} ms ({firstWindow.TotalMilliseconds:F0})");
             Console.WriteLine($"MainWindow 2: {sw.ElapsedMilliseconds - firstWindow.TotalMilliseconds:F0} ms   ({sw.ElapsedMilliseconds:F0})");
