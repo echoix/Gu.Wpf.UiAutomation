@@ -19,8 +19,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CalendarWindow");
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
-            Assert.IsInstanceOf<Calendar>(UiElement.FromAutomationElement(calendar.AutomationElement));
-            Assert.IsInstanceOf<CalendarDayButton>(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement));
+            Assert.Multiple(() =>
+            {
+                Assert.That(UiElement.FromAutomationElement(calendar.AutomationElement), Is.InstanceOf<Calendar>());
+                Assert.That(UiElement.FromAutomationElement(calendar.Items[0].AutomationElement), Is.InstanceOf<CalendarDayButton>());
+            });
         }
 
         [Test]
@@ -29,7 +32,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CalendarWindow");
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
-            CollectionAssert.AllItemsAreInstancesOfType(calendar.Items, typeof(CalendarDayButton));
+            Assert.That(calendar.Items, Is.All.InstanceOf(typeof(CalendarDayButton)));
             calendar.Items[3].Select();
         }
 
@@ -40,12 +43,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
             var date = DateTime.Today.AddDays(1);
-            Assert.Null(calendar.SelectedItem);
-            Assert.NotNull(calendar.Select(date));
+            Assert.Multiple(() =>
+            {
+                Assert.That(calendar.SelectedItem, Is.Null);
+                Assert.That(calendar.Select(date), Is.Not.Null);
+            });
 
             // Can't figure out a nice way to assert here
             // Tricky with culture
-            Assert.NotNull(calendar.SelectedItem);
+            Assert.That(calendar.SelectedItem, Is.Not.Null);
         }
     }
 }

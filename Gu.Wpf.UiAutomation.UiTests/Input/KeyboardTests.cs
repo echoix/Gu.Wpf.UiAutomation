@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             Keyboard.Type(Key.BACK);
             var textBox = window.FindTextBox();
             window.WaitUntilResponsive();
-            Assert.AreEqual("ab", textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo("ab"));
         }
 
         [TestCase(Key.KEY_Z, "z")]
@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             var mainWindow = app.MainWindow;
             Keyboard.Type(key);
             var textBox = mainWindow.FindTextBox();
-            Assert.AreEqual(expected, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(expected));
         }
 
         [TestCase(new[] { Key.KEY_Z }, "z")]
@@ -40,7 +40,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             var mainWindow = app.MainWindow;
             Keyboard.Type(keys);
             var textBox = mainWindow.FindTextBox();
-            Assert.AreEqual(expected, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(expected));
         }
 
         [TestCase("abc")]
@@ -53,7 +53,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             Keyboard.Type(text);
             var textBox = mainWindow.FindTextBox();
             Wait.UntilInputIsProcessed();
-            Assert.AreEqual(text, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(text));
         }
 
         [TestCase(Key.KEY_Z, "Z")]
@@ -67,7 +67,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             }
 
             var textBox = mainWindow.FindTextBox();
-            Assert.AreEqual(expected, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(expected));
         }
 
         [TestCase(ScanCodeShort.KEY_A, false, "a")]
@@ -82,7 +82,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
             Wait.UntilInputIsProcessed();
             var textBox = mainWindow.FindTextBox();
             Wait.For(TimeSpan.FromMilliseconds(20));
-            Assert.AreEqual(expected, textBox.Text);
+            Assert.That(textBox.Text, Is.EqualTo(expected));
         }
     }
 }

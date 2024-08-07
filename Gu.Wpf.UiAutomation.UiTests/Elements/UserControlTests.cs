@@ -13,9 +13,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "UserControlWindow");
             var window = app.MainWindow;
             var userControl = window.FindUserControl(key);
-            Assert.AreEqual(expected, userControl.FindTextBlock().Text);
-            Assert.AreEqual(expected, ((TextBlock)userControl.Content).Text);
-            Assert.IsInstanceOf<UserControl>(UiElement.FromAutomationElement(userControl.AutomationElement));
+            Assert.Multiple(() =>
+            {
+                Assert.That(userControl.FindTextBlock().Text, Is.EqualTo(expected));
+                Assert.That(((TextBlock)userControl.Content).Text, Is.EqualTo(expected));
+            });
+            Assert.That(UiElement.FromAutomationElement(userControl.AutomationElement), Is.InstanceOf<UserControl>());
         }
     }
 }

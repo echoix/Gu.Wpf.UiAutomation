@@ -11,8 +11,8 @@ namespace Gu.Wpf.UiAutomation.UiTests
         {
             using var app = Application.Launch("notepad.exe");
             var window = app.MainWindow;
-            Assert.NotNull(window);
-            Assert.NotNull(window.Title);
+            Assert.That(window, Is.Not.Null);
+            Assert.That(window.Title, Is.Not.Null);
         }
 
         [Test]
@@ -22,8 +22,8 @@ namespace Gu.Wpf.UiAutomation.UiTests
             {
                 using var app = Application.Attach("notepad.exe");
                 var window = app.MainWindow;
-                Assert.NotNull(window);
-                Assert.NotNull(window.Title);
+                Assert.That(window, Is.Not.Null);
+                Assert.That(window.Title, Is.Not.Null);
             }
         }
 
@@ -33,8 +33,8 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var launchedApp = Application.Launch("notepad.exe");
             using var app = Application.Attach(launchedApp.ProcessId);
             var window = app.MainWindow;
-            Assert.NotNull(window);
-            Assert.NotNull(window.Title);
+            Assert.That(window, Is.Not.Null);
+            Assert.That(window.Title, Is.Not.Null);
         }
 
         [Test]
@@ -44,8 +44,8 @@ namespace Gu.Wpf.UiAutomation.UiTests
             {
                 using var app = Application.Attach(@"C:\WINDOWS\system32\notepad.exe");
                 var window = app.MainWindow;
-                Assert.NotNull(window);
-                Assert.NotNull(window.Title);
+                Assert.That(window, Is.Not.Null);
+                Assert.That(window.Title, Is.Not.Null);
             }
         }
 
@@ -57,9 +57,12 @@ namespace Gu.Wpf.UiAutomation.UiTests
             {
                 using var app = Application.AttachOrLaunch(new ProcessStartInfo(name));
                 var window = app.MainWindow;
-                Assert.NotNull(window);
-                Assert.NotNull(window.Title);
-                Assert.AreEqual(true, app.Close());
+                Assert.That(window, Is.Not.Null);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(window.Title, Is.Not.Null);
+                    Assert.That(app.Close(), Is.EqualTo(true));
+                });
             }
         }
     }

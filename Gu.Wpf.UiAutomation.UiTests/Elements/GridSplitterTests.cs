@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "GridSplitterWindow");
             var window = app.MainWindow;
             var gridSplitter = window.FindGridSplitter();
-            Assert.IsInstanceOf<GridSplitter>(UiElement.FromAutomationElement(gridSplitter.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(gridSplitter.AutomationElement), Is.InstanceOf<GridSplitter>());
         }
     }
 }

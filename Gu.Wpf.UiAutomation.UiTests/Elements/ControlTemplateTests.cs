@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ControlTemplateWindow");
             var window = app.MainWindow;
             var button = window.FindButton("ButtonInControlTemplate");
-            Assert.NotNull(button);
+            Assert.That(button, Is.Not.Null);
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ControlTemplateWindow");
             var window = app.MainWindow;
             var textBlock = window.FindTextBlock("TextBlockInControlTemplate");
-            Assert.NotNull(textBlock);
+            Assert.That(textBlock, Is.Not.Null);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "RichTextBoxWindow");
             var window = app.MainWindow;
             var richTextBox = window.FindRichTextBox();
-            Assert.IsInstanceOf<RichTextBox>(UiElement.FromAutomationElement(richTextBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(richTextBox.AutomationElement), Is.InstanceOf<RichTextBox>());
         }
     }
 }

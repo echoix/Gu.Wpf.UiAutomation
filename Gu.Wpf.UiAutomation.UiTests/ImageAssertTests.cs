@@ -80,7 +80,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             string expected = "Images do not match.\r\n" +
                               "Expected width: 200 height: 100 pixel format: Format32bppArgb\r\n" +
                               "Actual   width: 300 height: 300 pixel format: Format32bppArgb\r\n";
-            Assert.AreEqual(expected, exception.Message);
+            Assert.That(exception.Message, Is.EqualTo(expected));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
                               "x    y    Expected Actual\r\n" +
                               "12   5    FF000000 FFE6E6FA\r\n" +
                               "139  69   FF000000 FFE6E6FA\r\n";
-            Assert.AreEqual(expected, exception.Message);
+            Assert.That(exception.Message, Is.EqualTo(expected));
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             var button = window.FindButton("SizeButton");
             var count = 0;
             Assert.Throws<ImageAssertException>(() => ImageAssert.AreEqual(fileName, button, (expected, actual, resource) => count++));
-            Assert.AreEqual(1, count);
+            Assert.That(count, Is.EqualTo(1));
         }
     }
 }

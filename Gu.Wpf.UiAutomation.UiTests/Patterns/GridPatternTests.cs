@@ -12,13 +12,16 @@
             using var app = Application.Launch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid();
-            Assert.NotNull(dataGrid);
+            Assert.That(dataGrid, Is.Not.Null);
             var pattern = dataGrid.AutomationElement.GridPattern();
-            Assert.AreEqual(2, pattern.Current.ColumnCount);
-            Assert.AreEqual(4, pattern.Current.RowCount);
+            Assert.Multiple(() =>
+            {
+                Assert.That(pattern.Current.ColumnCount, Is.EqualTo(2));
+                Assert.That(pattern.Current.RowCount, Is.EqualTo(4));
+            });
 
             var item = pattern.GetItem(1, 1);
-            Assert.AreEqual("Item 2", item.Name());
+            Assert.That(item.Name(), Is.EqualTo("Item 2"));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "ToolBarWindow");
             var window = app.MainWindow;
             var toolBar = window.FindToolBar();
-            Assert.IsInstanceOf<ToolBar>(UiElement.FromAutomationElement(toolBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(toolBar.AutomationElement), Is.InstanceOf<ToolBar>());
         }
     }
 }

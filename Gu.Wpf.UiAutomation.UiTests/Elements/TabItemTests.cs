@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var tabItem = window.FindTabControl().Items[0];
-            Assert.IsInstanceOf<TabItem>(UiElement.FromAutomationElement(tabItem.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(tabItem.AutomationElement), Is.InstanceOf<TabItem>());
         }
 
         [TestCase(0, "x:Name", "1")]
@@ -33,9 +33,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select(index);
-            Assert.AreEqual(header, tabItem.HeaderText);
-            Assert.AreEqual(header, ((TextBlock)tabItem.Header).Text);
-            Assert.AreEqual(content, ((TextBlock)tabItem.Content).Text);
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
+            });
         }
 
         [TestCase(0, "x:Name", "1")]
@@ -47,10 +50,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select(index);
-            Assert.AreEqual(header, tabItem.HeaderText);
-            Assert.AreEqual(header, ((TextBlock)tabItem.Header).Text);
-            Assert.AreEqual(content, ((TextBlock)tabItem.Content).Text);
-            Assert.AreEqual(content, ((TextBlock)tabItem.ContentCollection[0]).Text);
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
+                Assert.That(((TextBlock)tabItem.ContentCollection[0]).Text, Is.EqualTo(content));
+            });
         }
 
         [Test]
@@ -60,13 +66,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select("WithItemsControl");
-            Assert.AreEqual("WithItemsControl", tabItem.HeaderText);
-            Assert.AreEqual("WithItemsControl", ((TextBlock)tabItem.Header).Text);
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = tabItem.Content);
             var content = tabItem.ContentCollection;
-            Assert.AreEqual(2, content.Count);
-            Assert.AreEqual("1", ((TextBlock)content[0]).Text);
-            Assert.AreEqual("2", ((TextBlock)content[1]).Text);
+            Assert.Multiple(() =>
+            {
+                Assert.That(content, Has.Count.EqualTo(2));
+                Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+                Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            });
         }
 
         [Test]
@@ -77,7 +89,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var tab = window.FindTabControl();
             tab.SelectedIndex = 0;
             var exception = Assert.Throws<InvalidOperationException>(() => _ = tab.Items[1].Content);
-            Assert.AreEqual("TabItem must have be selected to get Content.", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo("TabItem must have be selected to get Content."));
         }
     }
 }

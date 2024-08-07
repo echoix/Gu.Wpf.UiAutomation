@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox(key);
-            Assert.IsInstanceOf<CheckBox>(UiElement.FromAutomationElement(checkBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(checkBox.AutomationElement), Is.InstanceOf<CheckBox>());
         }
 
         [TestCase(null)]
@@ -38,7 +38,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var expected = key is null
                 ? $"Did not find a CheckBox matching ControlType == CheckBox."
                 : $"Did not find a CheckBox matching (ControlType == CheckBox && (Name == {key} || AutomationId == {key})).";
-            Assert.AreEqual(expected, exception.Message);
+            Assert.That(exception.Message, Is.EqualTo(expected));
         }
 
         [Test]
@@ -48,16 +48,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
             checkBox.IsChecked = true;
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
 
             checkBox.IsChecked = false;
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
 
             checkBox.IsChecked = true;
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
 
             var exception = Assert.Throws<UiAutomationException>(() => checkBox.IsChecked = null);
-            Assert.AreEqual($"Setting ToggleButton Test Checkbox.IsChecked to null failed.", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo($"Setting ToggleButton Test Checkbox.IsChecked to null failed."));
         }
 
         [Test]
@@ -67,16 +67,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("3-Way Test Checkbox");
             checkBox.IsChecked = true;
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
 
             checkBox.IsChecked = false;
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
 
             checkBox.IsChecked = null;
-            Assert.AreEqual(null, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(null));
 
             checkBox.IsChecked = true;
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
         }
 
         [Test]
@@ -85,16 +85,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "CheckBoxWindow");
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("Test Checkbox");
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
 
             checkBox.Click();
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
 
             checkBox.Click();
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
 
             checkBox.Click();
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
         }
 
         [Test]
@@ -103,16 +103,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "CheckBoxWindow");
             var window = app.MainWindow;
             var checkBox = window.FindCheckBox("3-Way Test Checkbox");
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
 
             checkBox.Click();
-            Assert.AreEqual(true, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(true));
 
             checkBox.Click();
-            Assert.AreEqual(null, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(null));
 
             checkBox.Click();
-            Assert.AreEqual(false, checkBox.IsChecked);
+            Assert.That(checkBox.IsChecked, Is.EqualTo(false));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var item = window.FindFirstByXPath($"/MenuBar/MenuItem[@Name='{GetFileMenuText()}']");
-            Assert.NotNull(item);
+            Assert.That(item, Is.Not.Null);
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var items = window.FindAllByXPath("//MenuItem");
-            Assert.AreEqual(6, items.Count);
+            Assert.That(items, Has.Count.EqualTo(6));
         }
 
         [Test]
@@ -36,9 +36,9 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var items = window.FindAllByXPath("(//MenuBar)[1]/MenuItem");
-            Assert.AreEqual(1, items.Count);
+            Assert.That(items, Has.Count.EqualTo(1));
             items = window.FindAllByXPath("(//MenuBar)[2]/MenuItem");
-            Assert.AreEqual(5, items.Count);
+            Assert.That(items, Has.Count.EqualTo(5));
         }
 
         private static string GetFileMenuText()

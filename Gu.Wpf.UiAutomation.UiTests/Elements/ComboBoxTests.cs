@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(key);
-            Assert.IsInstanceOf<ComboBox>(UiElement.FromAutomationElement(comboBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(comboBox.AutomationElement), Is.InstanceOf<ComboBox>());
         }
 
         [TestCase("EditableComboBox", true)]
@@ -33,7 +33,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(comboBoxId);
-            Assert.AreEqual(expected, comboBox.IsEditable);
+            Assert.That(comboBox.IsEditable, Is.EqualTo(expected));
         }
 
         [TestCase("EditableComboBox", false)]
@@ -45,7 +45,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(comboBoxId);
-            Assert.AreEqual(expected, comboBox.IsReadOnly);
+            Assert.That(comboBox.IsReadOnly, Is.EqualTo(expected));
         }
 
         [TestCase("EditableComboBox")]
@@ -58,8 +58,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(id);
-            CollectionAssert.AllItemsAreInstancesOfType(comboBox.Items, typeof(ComboBoxItem));
-            Assert.AreEqual(new[] { "Item 1", "Item 2", "Item 3" }, comboBox.Items.Select(x => x.Text));
+            Assert.That(comboBox.Items, Is.All.InstanceOf(typeof(ComboBoxItem)));
+            Assert.That(comboBox.Items.Select(x => x.Text), Is.EqualTo(new[] { "Item 1", "Item 2", "Item 3" }));
         }
 
         [TestCase("EditableComboBox")]
@@ -71,7 +71,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var comboBox = window.FindComboBox(comboBoxId);
             comboBox.Items[1].Select();
             var selectedItem = comboBox.SelectedItem;
-            Assert.AreEqual("Item 2", selectedItem.Text);
+            Assert.That(selectedItem.Text, Is.EqualTo("Item 2"));
         }
 
         [TestCase("EditableComboBox")]
@@ -81,9 +81,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(comboBoxId);
-            Assert.AreEqual("Item 2", comboBox.Select(1).Text);
+            Assert.That(comboBox.Select(1).Text, Is.EqualTo("Item 2"));
             var selectedItem = comboBox.SelectedItem;
-            Assert.AreEqual("Item 2", selectedItem.Text);
+            Assert.That(selectedItem.Text, Is.EqualTo("Item 2"));
         }
 
         [TestCase("EditableComboBox")]
@@ -93,9 +93,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ComboBoxWindow");
             var window = app.MainWindow;
             var comboBox = window.FindComboBox(comboBoxId);
-            Assert.AreEqual("Item 2", comboBox.Select("Item 2").Text);
+            Assert.That(comboBox.Select("Item 2").Text, Is.EqualTo("Item 2"));
             var selectedItem = comboBox.SelectedItem;
-            Assert.AreEqual("Item 2", selectedItem.Text);
+            Assert.That(selectedItem.Text, Is.EqualTo("Item 2"));
         }
 
         [TestCase("EditableComboBox")]
@@ -107,10 +107,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var comboBox = window.FindComboBox(comboBoxId);
 
             comboBox.Expand();
-            Assert.AreEqual(true, comboBox.IsDropDownOpen);
+            Assert.That(comboBox.IsDropDownOpen, Is.EqualTo(true));
 
             comboBox.Collapse();
-            Assert.AreEqual(false, comboBox.IsDropDownOpen);
+            Assert.That(comboBox.IsDropDownOpen, Is.EqualTo(false));
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var comboBox = window.FindComboBox("EditableComboBox");
             comboBox.EditableText = "Item 3";
-            Assert.AreEqual("Item 3", comboBox.SelectedItem.Text);
+            Assert.That(comboBox.SelectedItem.Text, Is.EqualTo("Item 3"));
         }
 
         [Test]
@@ -130,7 +130,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var comboBox = window.FindComboBox("EditableComboBox");
             comboBox.Enter("Item 3");
-            Assert.AreEqual("Item 3", comboBox.SelectedItem.Text);
+            Assert.That(comboBox.SelectedItem.Text, Is.EqualTo("Item 3"));
         }
     }
 }

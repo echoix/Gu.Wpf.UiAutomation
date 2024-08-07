@@ -19,7 +19,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridColumnHeader)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeader);
-            Assert.IsInstanceOf<DataGridColumnHeader>(UiElement.FromAutomationElement(header.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(header.AutomationElement), Is.InstanceOf<DataGridColumnHeader>());
         }
 
         [Test]
@@ -28,9 +28,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridColumnHeader)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeader);
-            Assert.AreEqual("IntValue", header.Text);
-            Assert.NotNull(header.LeftHeaderGripper);
-            Assert.NotNull(header.RightHeaderGripper);
+            Assert.Multiple(() =>
+            {
+                Assert.That(header.Text, Is.EqualTo("IntValue"));
+                Assert.That(header.LeftHeaderGripper, Is.Not.Null);
+                Assert.That(header.RightHeaderGripper, Is.Not.Null);
+            });
         }
     }
 }

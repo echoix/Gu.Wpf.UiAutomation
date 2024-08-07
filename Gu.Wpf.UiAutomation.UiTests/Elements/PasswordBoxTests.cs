@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "PasswordBoxWindow");
             var window = app.MainWindow;
             var passwordBox = window.FindPasswordBox();
-            Assert.IsInstanceOf<PasswordBox>(UiElement.FromAutomationElement(passwordBox.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(passwordBox.AutomationElement), Is.InstanceOf<PasswordBox>());
         }
     }
 }

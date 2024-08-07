@@ -41,7 +41,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseMove Position: 0,0",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
 
             Mouse.Position = mouseArea.Bounds.Center();
             Wait.UntilInputIsProcessed();
@@ -51,7 +51,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseMove Position: 250,300",
             });
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseMove Position: 230,280",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseMove Position: 230,280",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [TestCase(0)]
@@ -132,11 +132,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
 
             if (milliseconds == 0)
             {
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
             else
             {
-                CollectionAssert.IsSubsetOf(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(expected, Is.SubsetOf(events.Items.Select(x => x.Text).ToArray()));
             }
         }
 
@@ -167,7 +167,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "PreviewMouseMove Position: 230,280",
                     "MouseMove Position: 230,280",
                 };
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
             else
             {
@@ -181,7 +181,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "PreviewMouseMove Position: 230,280",
                     "MouseMove Position: 230,280",
                 };
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
         }
 
@@ -212,7 +212,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "PreviewMouseMove Position: 230,280",
                     "MouseMove Position: 230,280",
                 };
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
             else
             {
@@ -226,7 +226,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "PreviewMouseMove Position: 230,280",
                     "MouseMove Position: 230,280",
                 };
-                CollectionAssert.IsSubsetOf(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(expected, Is.SubsetOf(events.Items.Select(x => x.Text).ToArray()));
             }
         }
 
@@ -255,7 +255,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "PreviewMouseMove Position: 230,280",
                 "MouseMove Position: 230,280",
             };
-            CollectionAssert.IsSubsetOf(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(expected, Is.SubsetOf(events.Items.Select(x => x.Text).ToArray()));
         }
 
         [Test]
@@ -281,7 +281,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -307,7 +307,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -333,7 +333,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -359,7 +359,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -387,7 +387,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseDoubleClick Position: 250,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -408,7 +408,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseLeftButtonDown Position: 250,300 Button: Left Pressed",
                 "MouseDown Position: 250,300",
             };
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
 
             Mouse.Up(MouseButton.Left);
             expected.AddRange(new[]
@@ -419,7 +419,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             });
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -440,7 +440,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseRightButtonDown Position: 250,300 Button: Right Pressed",
                 "MouseDown Position: 250,300",
             };
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
 
             Mouse.Up(MouseButton.Right);
             expected.AddRange(new[]
@@ -450,7 +450,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseRightButtonUp Position: 250,300 Button: Right Released",
                 "MouseUp Position: 250,300",
             });
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -473,7 +473,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                     "MouseLeftButtonDown Position: 250,300 Button: Left Pressed",
                     "MouseDown Position: 250,300",
                 };
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
 
             expected.AddRange(new[]
@@ -484,7 +484,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,300",
             });
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -516,7 +516,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseRightButtonUp Position: 250,300 Button: Right Released",
                 "MouseUp Position: 250,300",
             });
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -545,7 +545,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 260,320",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [TestCase(0)]
@@ -577,11 +577,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
 
             if (milliseconds == 0)
             {
-                CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
             }
             else
             {
-                CollectionAssert.IsSubsetOf(expected, events.Items.Select(x => x.Text).ToArray());
+                Assert.That(expected, Is.SubsetOf(events.Items.Select(x => x.Text).ToArray()));
             }
         }
 
@@ -611,7 +611,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 260,300",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -640,7 +640,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 "MouseUp Position: 250,310",
             };
 
-            CollectionAssert.AreEqual(expected, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expected).AsCollection);
         }
 
         [TestCase(-2, "-240")]
@@ -663,7 +663,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 $"MouseWheel Position: 250,300 {expected}",
             };
 
-            CollectionAssert.AreEqual(expecteds, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expecteds).AsCollection);
         }
 
         [TestCase(-2, "-240")]
@@ -687,7 +687,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Input
                 $"MouseWheel Position: 250,300 {expected}",
             };
 
-            CollectionAssert.AreEqual(expecteds, events.Items.Select(x => x.Text).ToArray());
+            Assert.That(events.Items.Select(x => x.Text).ToArray(), Is.EqualTo(expecteds).AsCollection);
         }
 
         // ReSharper disable once UnusedMember.Local

@@ -14,7 +14,7 @@
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
             var windowPattern = window.AutomationElement.GetCurrentPattern(WindowPattern.Pattern);
-            Assert.NotNull(windowPattern);
+            Assert.That(windowPattern, Is.Not.Null);
         }
 
         [Test]
@@ -32,7 +32,7 @@
             {
                 var window = app.MainWindow;
                 var pattern = window.AutomationElement.GetCachedPattern(WindowPattern.Pattern);
-                Assert.NotNull(pattern);
+                Assert.That(pattern, Is.Not.Null);
             }
         }
 
@@ -67,7 +67,7 @@
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
             var windowProperty = window.AutomationElement.GetCurrentPropertyValue(WindowPatternIdentifiers.CanMaximizeProperty);
-            Assert.NotNull(windowProperty);
+            Assert.That(windowProperty, Is.Not.Null);
         }
 
         [Test]
@@ -84,7 +84,7 @@
             {
                 var window = app.MainWindow;
                 var windowProperty = window.AutomationElement.GetCachedPropertyValue(WindowPatternIdentifiers.CanMaximizeProperty);
-                Assert.NotNull(windowProperty);
+                Assert.That(windowProperty, Is.Not.Null);
             }
         }
     }

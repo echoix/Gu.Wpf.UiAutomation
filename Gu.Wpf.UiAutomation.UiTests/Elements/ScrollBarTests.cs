@@ -18,9 +18,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindHorizontalScrollBar();
-            Assert.IsInstanceOf<HorizontalScrollBar>(scrollBar);
-            Assert.AreEqual("HorizontalScrollBar", scrollBar.AutomationId);
-            Assert.IsInstanceOf<HorizontalScrollBar>(UiElement.FromAutomationElement(scrollBar.AutomationElement));
+            Assert.That(scrollBar, Is.InstanceOf<HorizontalScrollBar>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(scrollBar.AutomationId, Is.EqualTo("HorizontalScrollBar"));
+                Assert.That(UiElement.FromAutomationElement(scrollBar.AutomationElement), Is.InstanceOf<HorizontalScrollBar>());
+            });
         }
 
         [Test]
@@ -29,9 +32,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindVerticalScrollBar();
-            Assert.IsInstanceOf<VerticalScrollBar>(scrollBar);
-            Assert.AreEqual("VerticalScrollBar", scrollBar.AutomationId);
-            Assert.IsInstanceOf<VerticalScrollBar>(UiElement.FromAutomationElement(scrollBar.AutomationElement));
+            Assert.That(scrollBar, Is.InstanceOf<VerticalScrollBar>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(scrollBar.AutomationId, Is.EqualTo("VerticalScrollBar"));
+                Assert.That(UiElement.FromAutomationElement(scrollBar.AutomationElement), Is.InstanceOf<VerticalScrollBar>());
+            });
         }
 
         [Test]
@@ -40,13 +46,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindVerticalScrollBar();
-            Assert.AreEqual(0, scrollBar.Minimum);
-            //// Using a tolerance as there is a difference on Win7 & Win10
-            Assert.AreEqual(155, scrollBar.Maximum, 1);
-            Assert.AreEqual(0, scrollBar.Value);
-            Assert.AreEqual(0.1, scrollBar.SmallChange);
-            Assert.AreEqual(1, scrollBar.LargeChange);
-            Assert.AreEqual(false, scrollBar.IsReadOnly);
+            Assert.Multiple(() =>
+            {
+                Assert.That(scrollBar.Minimum, Is.EqualTo(0));
+                //// Using a tolerance as there is a difference on Win7 & Win10
+                Assert.That(scrollBar.Maximum, Is.EqualTo(155).Within(1));
+                Assert.That(scrollBar.Value, Is.EqualTo(0));
+                Assert.That(scrollBar.SmallChange, Is.EqualTo(0.1));
+                Assert.That(scrollBar.LargeChange, Is.EqualTo(1));
+                Assert.That(scrollBar.IsReadOnly, Is.EqualTo(false));
+            });
         }
     }
 }

@@ -18,9 +18,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollViewer = window.FindScrollViewer();
-            Assert.AreEqual("HorizontalScrollBar", scrollViewer.HorizontalScrollBar.AutomationId);
-            Assert.AreEqual("VerticalScrollBar", scrollViewer.VerticalScrollBar.AutomationId);
-            Assert.IsInstanceOf<ScrollViewer>(UiElement.FromAutomationElement(scrollViewer.AutomationElement));
+            Assert.Multiple(() =>
+            {
+                Assert.That(scrollViewer.HorizontalScrollBar.AutomationId, Is.EqualTo("HorizontalScrollBar"));
+                Assert.That(scrollViewer.VerticalScrollBar.AutomationId, Is.EqualTo("VerticalScrollBar"));
+            });
+            Assert.That(UiElement.FromAutomationElement(scrollViewer.AutomationElement), Is.InstanceOf<ScrollViewer>());
         }
 
         [Test]
@@ -30,13 +33,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var scrollViewer = window.FindScrollViewer();
             var pattern = scrollViewer.ScrollPattern.Current;
-            Assert.AreEqual(0, pattern.HorizontalScrollPercent);
-            Assert.AreEqual(66.75, pattern.HorizontalViewSize);
-            Assert.AreEqual(true, pattern.HorizontallyScrollable);
-            Assert.AreEqual(0, pattern.VerticalScrollPercent);
-            //// Using a tolerance as there is a difference on Win7 & Win10
-            Assert.AreEqual(61.25, pattern.VerticalViewSize, 1);
-            Assert.AreEqual(true, pattern.VerticallyScrollable);
+            Assert.Multiple(() =>
+            {
+                Assert.That(pattern.HorizontalScrollPercent, Is.EqualTo(0));
+                Assert.That(pattern.HorizontalViewSize, Is.EqualTo(66.75));
+                Assert.That(pattern.HorizontallyScrollable, Is.EqualTo(true));
+                Assert.That(pattern.VerticalScrollPercent, Is.EqualTo(0));
+                //// Using a tolerance as there is a difference on Win7 & Win10
+                Assert.That(pattern.VerticalViewSize, Is.EqualTo(61.25).Within(1));
+                Assert.That(pattern.VerticallyScrollable, Is.EqualTo(true));
+            });
         }
     }
 }

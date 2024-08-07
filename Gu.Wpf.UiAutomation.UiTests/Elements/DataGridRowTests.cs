@@ -20,7 +20,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var header = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.IsInstanceOf<DataGridRow>(UiElement.FromAutomationElement(header.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(header.AutomationElement), Is.InstanceOf<DataGridRow>());
         }
 
         [Test]
@@ -29,9 +29,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.AreEqual("Row 1", row.Header.Text);
-            Assert.NotNull(row.Header.TopHeaderGripper);
-            Assert.NotNull(row.Header.BottomHeaderGripper);
+            Assert.Multiple(() =>
+            {
+                Assert.That(row.Header.Text, Is.EqualTo("Row 1"));
+                Assert.That(row.Header.TopHeaderGripper, Is.Not.Null);
+                Assert.That(row.Header.BottomHeaderGripper, Is.Not.Null);
+            });
         }
 
         [Test]
@@ -40,9 +43,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.AreEqual(2, row.Cells.Count);
-            CollectionAssert.AllItemsAreInstancesOfType(row.Cells, typeof(DataGridCell));
-            CollectionAssert.AreEqual(new[] { "1", "Item 1" }, row.Cells.Select(x => x.Value));
+            Assert.That(row.Cells, Has.Count.EqualTo(2));
+            Assert.That(row.Cells, Is.All.InstanceOf(typeof(DataGridCell)));
+            Assert.That(row.Cells.Select(x => x.Value), Is.EqualTo(new[] { "1", "Item 1" }).AsCollection);
         }
     }
 }

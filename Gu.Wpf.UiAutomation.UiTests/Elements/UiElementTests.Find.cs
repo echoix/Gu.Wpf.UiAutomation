@@ -30,7 +30,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 var window = app.MainWindow;
                 var button = window.FindButton("EmptyButton");
                 var fromPoint = (Button)UiElement.FromPoint(button.GetClickablePoint());
-                Assert.AreEqual(button.Text, fromPoint.Text);
+                Assert.That(fromPoint.Text, Is.EqualTo(button.Text));
             }
 
             [Test]
@@ -42,7 +42,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 textBox.Text = "focused";
                 textBox.Focus();
                 var fromPoint = (TextBox)window.FocusedElement();
-                Assert.AreEqual("focused", fromPoint.Text);
+                Assert.That(fromPoint.Text, Is.EqualTo("focused"));
             }
 
             [Test]
@@ -51,7 +51,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
                 var checkBox = window.FindCheckBox();
-                Assert.IsInstanceOf<CheckBox>(checkBox);
+                Assert.That(checkBox, Is.InstanceOf<CheckBox>());
             }
 
             //// [TestCase("CheckBoxXName")]
@@ -62,7 +62,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "FindWindow");
                 var window = app.MainWindow;
                 var checkBox = window.FindCheckBox(key);
-                Assert.NotNull(checkBox);
+                Assert.That(checkBox, Is.Not.Null);
             }
 
             [TestCase(null)]
@@ -79,7 +79,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                     var expected = key is null
                         ? $"Did not find a CheckBox matching ControlType == CheckBox."
                         : $"Did not find a CheckBox matching (ControlType == CheckBox && (Name == {key} || AutomationId == {key})).";
-                    Assert.AreEqual(expected, exception.Message);
+                    Assert.That(exception.Message, Is.EqualTo(expected));
                 }
 
                 Retry.ResetTime();
@@ -91,7 +91,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
                 var child = window.FindFirstChild();
-                Assert.AreEqual("ControlType.TitleBar", child.ControlType.ProgrammaticName);
+                Assert.That(child.ControlType.ProgrammaticName, Is.EqualTo("ControlType.TitleBar"));
             }
 
             [Test]
@@ -100,7 +100,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
                 var child = window.FindFirstChild(x => new CheckBox(x));
-                Assert.AreEqual(ControlType.TitleBar, child.ControlType);
+                Assert.That(child.ControlType, Is.EqualTo(ControlType.TitleBar));
             }
 
             [TestCaseSource(nameof(FindAtCases))]
@@ -109,7 +109,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
                 var child = window.FindAt(TreeScope.Descendants, Conditions.TrueCondition, index, TimeSpan.FromMilliseconds(100));
-                Assert.AreEqual(expected, child.ControlType);
+                Assert.That(child.ControlType, Is.EqualTo(expected));
             }
 
             [Test]
@@ -123,8 +123,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                     1,
                     x => new CheckBox(x),
                     TimeSpan.FromMilliseconds(100));
-                Assert.IsInstanceOf<CheckBox>(child);
-                Assert.AreEqual("XName", child.AutomationId);
+                Assert.That(child, Is.InstanceOf<CheckBox>());
+                Assert.That(child.AutomationId, Is.EqualTo("XName"));
             }
 
             [Test]
@@ -132,24 +132,31 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             {
                 using var app = Application.AttachOrLaunch(ExeFileName, "CheckBoxWindow");
                 var window = app.MainWindow;
-                Assert.AreEqual(true, window.TryFindAt(
-                    TreeScope.Descendants,
-                    Conditions.CheckBox,
-                    1,
-                    x => new CheckBox(x),
-                    TimeSpan.FromMilliseconds(100),
-                    out var child));
-                Assert.IsInstanceOf<CheckBox>(child);
-                Assert.AreEqual("XName", child.AutomationId);
 
-                Assert.AreEqual(false, window.TryFindAt(
-                    TreeScope.Descendants,
-                    Conditions.CheckBox,
-                    100,
-                    x => new CheckBox(x),
-                    TimeSpan.FromMilliseconds(100),
-                    out child));
-                Assert.IsNull(child);
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(window.TryFindAt(
+                                TreeScope.Descendants,
+                                Conditions.CheckBox,
+                                1,
+                                x => new CheckBox(x),
+                                TimeSpan.FromMilliseconds(100),
+                                out var child), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That(child, Is.InstanceOf<CheckBox>());
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(child.AutomationId, Is.EqualTo("XName"));
+
+                    Assert.That(window.TryFindAt(
+                        TreeScope.Descendants,
+                        Conditions.CheckBox,
+                        100,
+                        x => new CheckBox(x),
+                        TimeSpan.FromMilliseconds(100),
+                        out child), Is.EqualTo(false));
+                });
+                Assert.That(child, Is.Null);
             }
         }
     }

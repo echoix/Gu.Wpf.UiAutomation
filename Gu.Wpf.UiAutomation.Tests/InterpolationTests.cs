@@ -18,26 +18,32 @@ namespace Gu.Wpf.UiAutomation.Tests
         public void TryGetPosition(string @from, string to, int elapsed, string expected)
         {
             var interpolation = Interpolation.Start(Parse(from), Parse(to), TimeSpan.FromMilliseconds(200));
-            Assert.AreEqual(true, interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p));
-            Assert.AreEqual(@from, $"{p.X},{p.Y}");
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+            Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+            Assert.That($"{p.X},{p.Y}", Is.EqualTo(@from));
 
             if (expected is null)
             {
-                Assert.AreEqual(true, interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p));
-                Assert.AreEqual(to, $"{p.X},{p.Y}");
-                Assert.AreEqual(false, interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _));
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That($"{p.X},{p.Y}", Is.EqualTo(to));
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _), Is.EqualTo(false));
             }
             else
             {
-                Assert.AreEqual(true, interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p));
-                Assert.AreEqual(expected, $"{p.X},{p.Y}");
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That($"{p.X},{p.Y}", Is.EqualTo(expected));
             }
         }
 
         private static POINT Parse(string text)
         {
             var texts = text.Split(',');
-            Assert.AreEqual(2, texts.Length);
+            Assert.That(texts, Has.Length.EqualTo(2));
             return new POINT(
                 int.Parse(texts[0], CultureInfo.InvariantCulture),
                 int.Parse(texts[1], CultureInfo.InvariantCulture));

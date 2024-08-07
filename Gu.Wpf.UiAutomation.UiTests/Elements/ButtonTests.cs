@@ -34,7 +34,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ButtonWindow");
             var window = app.MainWindow;
             var button = window.FindButton(key);
-            Assert.AreEqual(expected, button.Text);
+            Assert.That(button.Text, Is.EqualTo(expected));
         }
 
         [TestCase("AutomationId", "AutomationProperties.AutomationId")]
@@ -45,7 +45,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ButtonWindow");
             var window = app.MainWindow;
             var button = window.FindButton(key);
-            Assert.AreEqual(expected, ((TextBlock)button.Content).Text);
+            Assert.That(((TextBlock)button.Content).Text, Is.EqualTo(expected));
         }
 
         [TestCase("AutomationId")]
@@ -57,7 +57,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
             var exception = Assert.Throws<InvalidOperationException>(() => window.FindButton(key));
-            Assert.AreEqual($"Did not find a Button matching ((ControlType == Button && IsTogglePatternAvailable == False) && (Name == {key} || AutomationId == {key})).", exception.Message);
+            Assert.That(exception.Message, Is.EqualTo($"Did not find a Button matching ((ControlType == Button && IsTogglePatternAvailable == False) && (Name == {key} || AutomationId == {key}))."));
         }
 
         [Test]
@@ -67,10 +67,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Click();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
         }
 
         [Test]
@@ -80,16 +80,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Click();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
 
             button.Click();
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
 
             button.Click();
-            Assert.AreEqual("3", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("3"));
         }
 
         [Test]
@@ -99,10 +99,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Invoke();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
         }
 
         [Test]
@@ -112,16 +112,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Invoke();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
 
             button.Invoke();
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
 
             button.Invoke();
-            Assert.AreEqual("3", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("3"));
         }
 
         [Test]
@@ -131,10 +131,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Sleep Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Click();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
         }
 
         [Test]
@@ -144,16 +144,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Sleep Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Click();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
 
             button.Invoke();
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
 
             button.Invoke();
-            Assert.AreEqual("3", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("3"));
         }
 
         [Test]
@@ -163,10 +163,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Sleep Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Invoke();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
         }
 
         [Test]
@@ -176,16 +176,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Sleep Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Invoke();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
 
             button.Invoke();
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
 
             button.Invoke();
-            Assert.AreEqual("3", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("3"));
         }
 
         [Test]
@@ -195,13 +195,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             button.Click();
-            Assert.AreEqual("1", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
 
             button.Invoke();
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
         }
 
         [Test]
@@ -212,10 +212,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 var window = app.MainWindow;
                 var button = window.FindButton("Test Button");
                 var textBlock = window.FindTextBlock("CountTextBlock");
-                Assert.AreEqual("0", textBlock.Text);
+                Assert.That(textBlock.Text, Is.EqualTo("0"));
 
                 button.Click();
-                Assert.AreEqual("1", textBlock.Text);
+                Assert.That(textBlock.Text, Is.EqualTo("1"));
             }
 
             using (var app = Application.Launch(ExeFileName, "ButtonWindow"))
@@ -223,10 +223,10 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 var window = app.MainWindow;
                 var button = window.FindButton("Test Button");
                 var textBlock = window.FindTextBlock("CountTextBlock");
-                Assert.AreEqual("0", textBlock.Text);
+                Assert.That(textBlock.Text, Is.EqualTo("0"));
 
                 button.Invoke();
-                Assert.AreEqual("1", textBlock.Text);
+                Assert.That(textBlock.Text, Is.EqualTo("1"));
             }
         }
 
@@ -237,14 +237,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("Test Button");
             var textBlock = window.FindTextBlock("CountTextBlock");
-            Assert.AreEqual("0", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             Mouse.LeftClick(button.GetClickablePoint());
-            Assert.AreEqual("1", textBlock.Text);
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+            Assert.That(textBlock.Text, Is.EqualTo("1"));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
 
-            Assert.AreEqual(true, button.TryGetClickablePoint(out var p));
+            Assert.That(button.TryGetClickablePoint(out var p), Is.EqualTo(true));
             Mouse.LeftClick(p);
-            Assert.AreEqual("2", textBlock.Text);
+            Assert.That(textBlock.Text, Is.EqualTo("2"));
         }
     }
 }

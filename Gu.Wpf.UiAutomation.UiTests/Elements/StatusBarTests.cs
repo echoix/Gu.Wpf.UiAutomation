@@ -12,7 +12,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "StatusBarWindow");
             var window = app.MainWindow;
             var statusBar = window.FindStatusBar();
-            Assert.IsInstanceOf<StatusBar>(UiElement.FromAutomationElement(statusBar.AutomationElement));
+            Assert.That(UiElement.FromAutomationElement(statusBar.AutomationElement), Is.InstanceOf<StatusBar>());
         }
     }
 }
