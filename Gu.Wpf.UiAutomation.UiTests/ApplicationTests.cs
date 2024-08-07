@@ -26,17 +26,14 @@ namespace Gu.Wpf.UiAutomation.UiTests
         public void Properties()
         {
             using var app = Application.AttachOrLaunch(ExeFileName, "EmptyWindow");
-            Assert.That(app.MainWindowHandle, Is.EqualTo(app.MainWindow.NativeWindowHandle));
-            Assert.AreNotEqual(IntPtr.Zero, app.MainWindowHandle);
-            Assert.NotZero(app.ProcessId);
             Assert.Multiple(() =>
             {
+                Assert.That(app.MainWindowHandle, Is.EqualTo(app.MainWindow.NativeWindowHandle));
+                Assert.That(app.MainWindowHandle, Is.Not.EqualTo(IntPtr.Zero));
+                Assert.That(app.ProcessId, Is.Not.Zero);
                 Assert.That(app.Name, Is.EqualTo("WpfApplication"));
                 Assert.That(app.HasExited, Is.EqualTo(false));
                 Assert.That(app.Close(), Is.EqualTo(true));
-            });
-            Assert.Multiple(() =>
-            {
                 Assert.That(app.HasExited, Is.EqualTo(true));
                 Assert.That(app.ExitCode, Is.EqualTo(0));
             });
