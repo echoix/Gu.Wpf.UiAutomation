@@ -40,7 +40,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var calendar = window.FindCalendar();
             var date = DateTime.Today.AddDays(1);
-            Assert.Null(calendar.SelectedItem);
+            Assert.That(calendar.SelectedItem, Is.Null);
             Assert.That(calendar.Select(date), Is.Not.Null);
 
             // Can't figure out a nice way to assert here
