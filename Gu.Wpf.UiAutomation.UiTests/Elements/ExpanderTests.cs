@@ -25,7 +25,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
             Assert.That(expander.HeaderText, Is.EqualTo(header));
-            Assert.NotNull(expander.FindTextBlock());
+            Assert.That(expander.FindTextBlock(), Is.Not.Null);
             Assert.That(UiElement.FromAutomationElement(expander.AutomationElement), Is.InstanceOf<Expander>());
         }
 

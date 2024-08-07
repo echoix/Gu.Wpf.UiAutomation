@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show SaveFileDialog").Click();
             var dialog = window.FindSaveFileDialog();
-            Assert.NotNull(dialog.FileTextBox);
+            Assert.That(dialog.FileTextBox, Is.Not.Null);
             dialog.SetFileName("C:\\Temp\\Foo.txt");
             dialog.Close();
         }
@@ -41,7 +41,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             window.FindButton("Show SaveFileDialog").Click();
             var dialog = window.FindSaveFileDialog();
-            Assert.NotNull(dialog.SaveButton);
+            Assert.That(dialog.SaveButton, Is.Not.Null);
             dialog.Close();
         }
     }

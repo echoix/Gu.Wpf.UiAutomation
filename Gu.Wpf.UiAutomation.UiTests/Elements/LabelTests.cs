@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var label = window.FindLabel(key);
             Assert.That(label.Text, Is.EqualTo(header));
-            Assert.NotNull(label.FindTextBlock());
+            Assert.That(label.FindTextBlock(), Is.Not.Null);
             Assert.That(UiElement.FromAutomationElement(label.AutomationElement), Is.InstanceOf<Label>());
         }
     }

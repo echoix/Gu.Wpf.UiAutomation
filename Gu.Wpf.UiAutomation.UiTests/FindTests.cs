@@ -26,7 +26,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             UiElement menuItem = null;
 
             Assert.DoesNotThrow(() => menuItem = app.MainWindow.FindFirst(TreeScope.Descendants, condition, TimeSpan.FromSeconds(10)));
-            Assert.NotNull(menuItem as MenuItem);
+            Assert.That(menuItem as MenuItem, Is.Not.Null);
         }
     }
 }

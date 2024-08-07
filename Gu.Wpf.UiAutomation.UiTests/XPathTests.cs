@@ -18,7 +18,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var item = window.FindFirstByXPath($"/MenuBar/MenuItem[@Name='{GetFileMenuText()}']");
-            Assert.NotNull(item);
+            Assert.That(item, Is.Not.Null);
         }
 
         [Test]

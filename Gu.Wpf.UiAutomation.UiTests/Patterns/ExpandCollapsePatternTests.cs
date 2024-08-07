@@ -13,7 +13,7 @@
             using var app = Application.Launch(ExeFileName, "ExpanderWindow");
             var window = app.MainWindow;
             var expander = window.FindExpander();
-            Assert.NotNull(expander);
+            Assert.That(expander, Is.Not.Null);
             var ecp = expander.AutomationElement.ExpandCollapsePattern();
             Assert.That(ecp.Current.ExpandCollapseState, Is.EqualTo(ExpandCollapseState.Expanded));
 

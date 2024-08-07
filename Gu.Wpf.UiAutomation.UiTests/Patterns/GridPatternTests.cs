@@ -12,7 +12,7 @@
             using var app = Application.Launch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid();
-            Assert.NotNull(dataGrid);
+            Assert.That(dataGrid, Is.Not.Null);
             var pattern = dataGrid.AutomationElement.GridPattern();
             Assert.Multiple(() =>
             {

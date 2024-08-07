@@ -29,8 +29,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var header = (DataGridColumnHeader)window.FindFirst(TreeScope.Descendants, Conditions.DataGridColumnHeader);
             Assert.That(header.Text, Is.EqualTo("IntValue"));
-            Assert.NotNull(header.LeftHeaderGripper);
-            Assert.NotNull(header.RightHeaderGripper);
+            Assert.That(header.LeftHeaderGripper, Is.Not.Null);
+            Assert.That(header.RightHeaderGripper, Is.Not.Null);
         }
     }
 }

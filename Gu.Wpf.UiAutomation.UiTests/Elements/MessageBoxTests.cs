@@ -37,8 +37,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(messageBox.FindLabel().Text, Is.EqualTo("Message text"));
             });
 
-            Assert.NotNull(messageBox.FindButton("OK"));
-            Assert.NotNull(messageBox.FindButton("Cancel"));
+            Assert.That(messageBox.FindButton("OK"), Is.Not.Null);
+            Assert.That(messageBox.FindButton("Cancel"), Is.Not.Null);
 
             messageBox.Close();
         }
@@ -57,9 +57,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 Assert.That(messageBox.FindLabel().Text, Is.EqualTo("Message text"));
             });
 
-            Assert.NotNull(messageBox.FindButton("Yes"));
-            Assert.NotNull(messageBox.FindButton("No"));
-            Assert.NotNull(messageBox.FindButton("Cancel"));
+            Assert.That(messageBox.FindButton("Yes"), Is.Not.Null);
+            Assert.That(messageBox.FindButton("No"), Is.Not.Null);
+            Assert.That(messageBox.FindButton("Cancel"), Is.Not.Null);
 
             messageBox.Close();
         }

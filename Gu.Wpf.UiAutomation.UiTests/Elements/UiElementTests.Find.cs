@@ -62,7 +62,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 using var app = Application.AttachOrLaunch(ExeFileName, "FindWindow");
                 var window = app.MainWindow;
                 var checkBox = window.FindCheckBox(key);
-                Assert.NotNull(checkBox);
+                Assert.That(checkBox, Is.Not.Null);
             }
 
             [TestCase(null)]

@@ -26,7 +26,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Patterns
             foreach (var item in listView.Items)
             {
                 var scrollItemPattern = item.AutomationElement.ScrollItemPattern();
-                Assert.NotNull(scrollItemPattern);
+                Assert.That(scrollItemPattern, Is.Not.Null);
                 item.ScrollIntoView();
             }
 

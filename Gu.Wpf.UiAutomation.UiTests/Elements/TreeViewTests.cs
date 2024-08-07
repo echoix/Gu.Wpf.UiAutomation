@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             item.Expand();
             item.Items[0].Select();
             Assert.That(item.Items[0].IsSelected, Is.EqualTo(true));
-            Assert.NotNull(tree.SelectedTreeViewItem);
+            Assert.That(tree.SelectedTreeViewItem, Is.Not.Null);
             Assert.That(tree.SelectedTreeViewItem.Text, Is.EqualTo("Lvl3 a"));
         }
 

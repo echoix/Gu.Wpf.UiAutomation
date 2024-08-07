@@ -16,9 +16,9 @@
             var tab = window.FindTabControl();
             var tabItem = tab.Items[0];
             var button = tabItem.FindButton("InvokableButton");
-            Assert.NotNull(button);
+            Assert.That(button, Is.Not.Null);
             var invokePattern = button.AutomationElement.InvokePattern();
-            Assert.NotNull(invokePattern);
+            Assert.That(invokePattern, Is.Not.Null);
             var invokeFired = false;
 
             using (button.SubscribeToEvent(

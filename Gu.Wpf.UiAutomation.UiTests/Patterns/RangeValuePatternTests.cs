@@ -12,7 +12,7 @@
             using var app = Application.Launch(ExeFileName, "SliderWindow");
             var window = app.MainWindow;
             var slider = window.FindSlider();
-            Assert.NotNull(slider);
+            Assert.That(slider, Is.Not.Null);
             var rvPattern = slider.AutomationElement.RangeValuePattern();
             Assert.Multiple(() =>
             {

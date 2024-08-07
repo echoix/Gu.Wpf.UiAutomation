@@ -25,7 +25,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
             Assert.That(groupBox.HeaderText, Is.EqualTo(header));
-            Assert.NotNull(groupBox.FindTextBlock());
+            Assert.That(groupBox.FindTextBlock(), Is.Not.Null);
             Assert.That(UiElement.FromAutomationElement(groupBox.AutomationElement), Is.InstanceOf<GroupBox>());
         }
 

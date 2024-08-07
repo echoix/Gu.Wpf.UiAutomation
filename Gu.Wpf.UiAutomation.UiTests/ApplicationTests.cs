@@ -103,7 +103,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch(ExeFileName, "EmptyWindow");
             var id = app.ProcessId;
             using var process = Process.GetProcessById(id);
-            Assert.NotNull(process);
+            Assert.That(process, Is.Not.Null);
             Application.WaitForMainWindow(process);
 
             Application.KillLaunched(ExeFileName);
@@ -119,7 +119,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 {
                     using (app1)
                     {
-                        Assert.NotNull(app1.MainWindow);
+                        Assert.That(app1.MainWindow, Is.Not.Null);
                     }
                 }
                 else
@@ -149,17 +149,17 @@ namespace Gu.Wpf.UiAutomation.UiTests
                 {
                     Assert.That(Application.TryWithAttached(ExeFileName, "EmptyWindow", app =>
                                 {
-                                    Assert.NotNull(app.MainWindow);
+                                    Assert.That(app.MainWindow, Is.Not.Null);
                                 }), Is.EqualTo(true));
 
                     Assert.That(Application.TryWithAttached(ExeFileName, app =>
                     {
-                        Assert.NotNull(app.MainWindow);
+                        Assert.That(app.MainWindow, Is.Not.Null);
                     }), Is.EqualTo(true));
 
                     Assert.That(Application.TryWithAttached(new ProcessStartInfo(ExeFileName), app =>
                    {
-                       Assert.NotNull(app.MainWindow);
+                       Assert.That(app.MainWindow, Is.Not.Null);
                    }), Is.EqualTo(true));
                 });
             }

@@ -15,7 +15,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             btn.Click();
             Wait.UntilInputIsProcessed();
             var popup = window.FindPopup();
-            Assert.NotNull(popup);
+            Assert.That(popup, Is.Not.Null);
             var popupChildren = popup.FindAllChildren();
             Assert.That(popupChildren.Count, Is.EqualTo(1));
             var check = (CheckBox)popupChildren[0];

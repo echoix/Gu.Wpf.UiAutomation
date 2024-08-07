@@ -30,8 +30,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
             Assert.That(row.Header.Text, Is.EqualTo("Row 1"));
-            Assert.NotNull(row.Header.TopHeaderGripper);
-            Assert.NotNull(row.Header.BottomHeaderGripper);
+            Assert.That(row.Header.TopHeaderGripper, Is.Not.Null);
+            Assert.That(row.Header.BottomHeaderGripper, Is.Not.Null);
         }
 
         [Test]
