@@ -15,8 +15,11 @@ namespace Gu.Wpf.UiAutomation.Tests.Extensions
             var ints = text.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                            .Select(int.Parse)
                            .ToArray();
-            Assert.That(ints.TryGetSingle(out var result), Is.EqualTo(expected));
-            Assert.That(result, Is.EqualTo(match));
+            Assert.Multiple(() =>
+            {
+                Assert.That(ints.TryGetSingle(out var result), Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo(match));
+            });
         }
 
         [TestCase("", false, 0)]
@@ -31,8 +34,11 @@ namespace Gu.Wpf.UiAutomation.Tests.Extensions
             var ints = text.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                             .Select(int.Parse)
                             .ToArray();
-            Assert.That(ints.TryGetSingle(x => x == 1, out var result), Is.EqualTo(expected));
-            Assert.That(result, Is.EqualTo(match));
+            Assert.Multiple(() =>
+            {
+                Assert.That(ints.TryGetSingle(x => x == 1, out var result), Is.EqualTo(expected));
+                Assert.That(result, Is.EqualTo(match));
+            });
         }
     }
 }

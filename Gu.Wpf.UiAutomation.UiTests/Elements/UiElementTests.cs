@@ -32,8 +32,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var button = window.FindButton("SizeButton");
             var buttonWindow = button.Window;
-            Assert.That(buttonWindow.AutomationElement, Is.EqualTo(window.AutomationElement));
-            Assert.That(buttonWindow.IsMainWindow, Is.EqualTo(true));
+            Assert.Multiple(() =>
+            {
+                Assert.That(buttonWindow.AutomationElement, Is.EqualTo(window.AutomationElement));
+                Assert.That(buttonWindow.IsMainWindow, Is.EqualTo(true));
+            });
         }
 
         [Test]
@@ -65,8 +68,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SizeWindow");
             var window = app.MainWindow;
             var button = window.FindButton("SizeButton");
-            Assert.That(button.ActualWidth, Is.EqualTo(200));
-            Assert.That(button.ActualHeight, Is.EqualTo(100));
+            Assert.Multiple(() =>
+            {
+                Assert.That(button.ActualWidth, Is.EqualTo(200));
+                Assert.That(button.ActualHeight, Is.EqualTo(100));
+            });
         }
 
         [Test]
@@ -78,15 +84,21 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             window.MoveTo(100, 200);
             if (WindowsVersion.IsWindows7())
             {
-                Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
-                Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
-                Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
+                    Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
+                    Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
+                });
             }
             else
             {
-                Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
-                Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
-                Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(button.Bounds, Is.EqualTo(new System.Windows.Rect(150, 311, 200, 100)));
+                    Assert.That(window.Bounds, Is.EqualTo(new System.Windows.Rect(100, 200, 300, 300)));
+                    Assert.That(button.RenderBounds, Is.EqualTo(new System.Windows.Rect(50, 111, 200, 100)));
+                });
             }
         }
 

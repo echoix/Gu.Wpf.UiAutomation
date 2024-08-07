@@ -18,8 +18,11 @@
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
             var parent = window.AutomationElement.Parent();
-            Assert.That(parent.ClassName(), Is.EqualTo("#32769"));
-            Assert.That(parent, Is.EqualTo(Desktop.AutomationElement));
+            Assert.Multiple(() =>
+            {
+                Assert.That(parent.ClassName(), Is.EqualTo("#32769"));
+                Assert.That(parent, Is.EqualTo(Desktop.AutomationElement));
+            });
 
             var checkbox = window.AutomationElement.FindFirst(TreeScope.Descendants, Conditions.CheckBox);
             Assert.That(checkbox.Parent(), Is.EqualTo(window.AutomationElement));
@@ -31,8 +34,11 @@
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
             var checkBox = window.FindTextBlock("TextBlock1");
-            Assert.That(checkBox.AutomationElement.TryFindFirst(TreeScope.Ancestors, Conditions.Window, out var element), Is.EqualTo(true));
-            Assert.That(element, Is.EqualTo(window.AutomationElement));
+            Assert.Multiple(() =>
+            {
+                Assert.That(checkBox.AutomationElement.TryFindFirst(TreeScope.Ancestors, Conditions.Window, out var element), Is.EqualTo(true));
+                Assert.That(element, Is.EqualTo(window.AutomationElement));
+            });
         }
 
         [Test]
@@ -40,8 +46,11 @@
         {
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
-            Assert.That(window.AutomationElement.TryFindFirst(TreeScope.Children, Conditions.CheckBox, out var element), Is.EqualTo(true));
-            Assert.That(element.Name(), Is.EqualTo("CheckBox1Content"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.AutomationElement.TryFindFirst(TreeScope.Children, Conditions.CheckBox, out var element), Is.EqualTo(true));
+                Assert.That(element.Name(), Is.EqualTo("CheckBox1Content"));
+            });
         }
 
         [Test]
@@ -49,8 +58,11 @@
         {
             using var app = Application.AttachOrLaunch("WpfApplication.exe", "FindWindow");
             var window = app.MainWindow;
-            Assert.That(window.AutomationElement.TryFindFirst(TreeScope.Children, Conditions.TextBlock, out var element), Is.EqualTo(true));
-            Assert.That(element.Name(), Is.EqualTo("TextBlock1"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.AutomationElement.TryFindFirst(TreeScope.Children, Conditions.TextBlock, out var element), Is.EqualTo(true));
+                Assert.That(element.Name(), Is.EqualTo("TextBlock1"));
+            });
         }
 
         [Test]

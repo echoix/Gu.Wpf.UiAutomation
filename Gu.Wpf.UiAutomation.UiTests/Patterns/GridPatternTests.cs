@@ -14,8 +14,11 @@
             var dataGrid = window.FindDataGrid();
             Assert.NotNull(dataGrid);
             var pattern = dataGrid.AutomationElement.GridPattern();
-            Assert.That(pattern.Current.ColumnCount, Is.EqualTo(2));
-            Assert.That(pattern.Current.RowCount, Is.EqualTo(4));
+            Assert.Multiple(() =>
+            {
+                Assert.That(pattern.Current.ColumnCount, Is.EqualTo(2));
+                Assert.That(pattern.Current.RowCount, Is.EqualTo(4));
+            });
 
             var item = pattern.GetItem(1, 1);
             Assert.That(item.Name(), Is.EqualTo("Item 2"));

@@ -32,16 +32,25 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton1 = window.FindRadioButton("Test RadioButton");
             var radioButton2 = window.FindRadioButton("AutomationId");
             radioButton1.IsChecked = true;
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
 
             radioButton2.IsChecked = true;
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            });
 
             radioButton1.IsChecked = true;
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
         }
 
         [TestCase("Test RadioButton", "Test RadioButton")]
@@ -61,16 +70,25 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton2 = window.FindRadioButton("AutomationId");
 
             radioButton1.Click();
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
 
             radioButton2.Click();
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            });
 
             radioButton1.Click();
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
         }
 
         [Test]
@@ -93,16 +111,25 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var radioButton1 = window.FindRadioButton("RadioButton1");
             var radioButton2 = window.FindRadioButton("RadioButton2");
 
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
 
             radioButton1.IsChecked = true;
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(true));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(false));
+            });
 
             radioButton2.IsChecked = true;
-            Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
-            Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            Assert.Multiple(() =>
+            {
+                Assert.That(radioButton1.IsChecked, Is.EqualTo(false));
+                Assert.That(radioButton2.IsChecked, Is.EqualTo(true));
+            });
         }
     }
 }

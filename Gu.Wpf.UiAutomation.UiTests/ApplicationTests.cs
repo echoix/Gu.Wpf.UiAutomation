@@ -29,9 +29,12 @@ namespace Gu.Wpf.UiAutomation.UiTests
             Assert.That(app.MainWindowHandle, Is.EqualTo(app.MainWindow.NativeWindowHandle));
             Assert.AreNotEqual(IntPtr.Zero, app.MainWindowHandle);
             Assert.NotZero(app.ProcessId);
-            Assert.That(app.Name, Is.EqualTo("WpfApplication"));
-            Assert.That(app.HasExited, Is.EqualTo(false));
-            Assert.That(app.Close(), Is.EqualTo(true));
+            Assert.Multiple(() =>
+            {
+                Assert.That(app.Name, Is.EqualTo("WpfApplication"));
+                Assert.That(app.HasExited, Is.EqualTo(false));
+                Assert.That(app.Close(), Is.EqualTo(true));
+            });
             Assert.That(app.HasExited, Is.EqualTo(true));
             Assert.That(app.ExitCode, Is.EqualTo(0));
         }
@@ -125,12 +128,15 @@ namespace Gu.Wpf.UiAutomation.UiTests
                     Assert.Fail("Failed to attach");
                 }
 
-                Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "EmptyWindow" }, out _), Is.EqualTo(true));
-                Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "EmptyWindow" }, OnDispose.LeaveOpen, out _), Is.EqualTo(true));
-                Assert.That(Application.TryAttach(ExeFileName, "EmptyWindow", OnDispose.LeaveOpen, out _), Is.EqualTo(true));
-                Assert.That(Application.TryAttach(ExeFileName, out _), Is.EqualTo(true));
-                Assert.That(Application.TryAttach(ExeFileName, OnDispose.LeaveOpen, out _), Is.EqualTo(true));
-                Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "MehWindow" }, out _), Is.EqualTo(false));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "EmptyWindow" }, out _), Is.EqualTo(true));
+                    Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "EmptyWindow" }, OnDispose.LeaveOpen, out _), Is.EqualTo(true));
+                    Assert.That(Application.TryAttach(ExeFileName, "EmptyWindow", OnDispose.LeaveOpen, out _), Is.EqualTo(true));
+                    Assert.That(Application.TryAttach(ExeFileName, out _), Is.EqualTo(true));
+                    Assert.That(Application.TryAttach(ExeFileName, OnDispose.LeaveOpen, out _), Is.EqualTo(true));
+                    Assert.That(Application.TryAttach(new ProcessStartInfo(Application.FindExe(ExeFileName)) { Arguments = "MehWindow" }, out _), Is.EqualTo(false));
+                });
             }
         }
 
@@ -139,20 +145,23 @@ namespace Gu.Wpf.UiAutomation.UiTests
         {
             using (Application.AttachOrLaunch(ExeFileName, "EmptyWindow"))
             {
-                Assert.That(Application.TryWithAttached(ExeFileName, "EmptyWindow", app =>
+                Assert.Multiple(() =>
                 {
-                    Assert.NotNull(app.MainWindow);
-                }), Is.EqualTo(true));
+                    Assert.That(Application.TryWithAttached(ExeFileName, "EmptyWindow", app =>
+                                {
+                                    Assert.NotNull(app.MainWindow);
+                                }), Is.EqualTo(true));
 
-                Assert.That(Application.TryWithAttached(ExeFileName, app =>
-                {
-                    Assert.NotNull(app.MainWindow);
-                }), Is.EqualTo(true));
+                    Assert.That(Application.TryWithAttached(ExeFileName, app =>
+                    {
+                        Assert.NotNull(app.MainWindow);
+                    }), Is.EqualTo(true));
 
-                Assert.That(Application.TryWithAttached(new ProcessStartInfo(ExeFileName), app =>
-               {
-                   Assert.NotNull(app.MainWindow);
-               }), Is.EqualTo(true));
+                    Assert.That(Application.TryWithAttached(new ProcessStartInfo(ExeFileName), app =>
+                   {
+                       Assert.NotNull(app.MainWindow);
+                   }), Is.EqualTo(true));
+                });
             }
         }
     }

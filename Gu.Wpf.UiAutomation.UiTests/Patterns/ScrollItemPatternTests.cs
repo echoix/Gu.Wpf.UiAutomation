@@ -13,8 +13,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Patterns
             var window = app.MainWindow;
             var listView = window.FindListView();
             var gridPattern = listView.AutomationElement.GridPattern();
-            Assert.That(gridPattern.Current.ColumnCount, Is.EqualTo(2));
-            Assert.That(gridPattern.Current.RowCount, Is.EqualTo(7));
+            Assert.Multiple(() =>
+            {
+                Assert.That(gridPattern.Current.ColumnCount, Is.EqualTo(2));
+                Assert.That(gridPattern.Current.RowCount, Is.EqualTo(7));
+            });
 
             ItemRealizer.RealizeItems(listView);
             Assert.That(gridPattern.Current.RowCount, Is.EqualTo(listView.Items.Count));

@@ -33,9 +33,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select(index);
-            Assert.That(tabItem.HeaderText, Is.EqualTo(header));
-            Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
-            Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
+            });
         }
 
         [TestCase(0, "x:Name", "1")]
@@ -47,10 +50,13 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select(index);
-            Assert.That(tabItem.HeaderText, Is.EqualTo(header));
-            Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
-            Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
-            Assert.That(((TextBlock)tabItem.ContentCollection[0]).Text, Is.EqualTo(content));
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo(header));
+                Assert.That(((TextBlock)tabItem.Content).Text, Is.EqualTo(content));
+                Assert.That(((TextBlock)tabItem.ContentCollection[0]).Text, Is.EqualTo(content));
+            });
         }
 
         [Test]
@@ -60,13 +66,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tab = window.FindTabControl();
             var tabItem = tab.Select("WithItemsControl");
-            Assert.That(tabItem.HeaderText, Is.EqualTo("WithItemsControl"));
-            Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo("WithItemsControl"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(tabItem.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((TextBlock)tabItem.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = tabItem.Content);
             var content = tabItem.ContentCollection;
-            Assert.That(content.Count, Is.EqualTo(2));
-            Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
-            Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(content.Count, Is.EqualTo(2));
+                Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+                Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            });
         }
 
         [Test]

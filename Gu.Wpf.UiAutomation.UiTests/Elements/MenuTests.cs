@@ -30,8 +30,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.That(menu, Is.Not.Null);
             var items = menu.Items;
             Assert.That(items.Count, Is.EqualTo(2));
-            Assert.That(items[0].Text, Is.EqualTo("File"));
-            Assert.That(items[1].Text, Is.EqualTo("Edit"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(items[0].Text, Is.EqualTo("File"));
+                Assert.That(items[1].Text, Is.EqualTo("Edit"));
+            });
 
             var subitems1 = items[0].Items;
             Assert.That(subitems1.Count, Is.EqualTo(1));
@@ -39,13 +42,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
 
             var subitems2 = items[1].Items;
             Assert.That(subitems2.Count, Is.EqualTo(2));
-            Assert.That(subitems2[0].Text, Is.EqualTo("Copy"));
-            Assert.That(subitems2[1].Text, Is.EqualTo("Paste"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(subitems2[0].Text, Is.EqualTo("Copy"));
+                Assert.That(subitems2[1].Text, Is.EqualTo("Paste"));
+            });
 
             var subsubitems1 = subitems2[0].Items;
             Assert.That(subsubitems1.Count, Is.EqualTo(2));
-            Assert.That(subsubitems1[0].Text, Is.EqualTo("Plain"));
-            Assert.That(subsubitems1[1].Text, Is.EqualTo("Fancy"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(subsubitems1[0].Text, Is.EqualTo("Plain"));
+                Assert.That(subsubitems1[1].Text, Is.EqualTo("Fancy"));
+            });
         }
 
         [Test]

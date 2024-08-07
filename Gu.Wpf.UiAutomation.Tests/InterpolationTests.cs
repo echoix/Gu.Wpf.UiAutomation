@@ -18,19 +18,28 @@ namespace Gu.Wpf.UiAutomation.Tests
         public void TryGetPosition(string @from, string to, int elapsed, string expected)
         {
             var interpolation = Interpolation.Start(Parse(from), Parse(to), TimeSpan.FromMilliseconds(200));
-            Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p), Is.EqualTo(true));
-            Assert.That($"{p.X},{p.Y}", Is.EqualTo(@from));
+            Assert.Multiple(() =>
+            {
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p), Is.EqualTo(true));
+                Assert.That($"{p.X},{p.Y}", Is.EqualTo(@from));
+            });
 
             if (expected is null)
             {
-                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
-                Assert.That($"{p.X},{p.Y}", Is.EqualTo(to));
-                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _), Is.EqualTo(false));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+                    Assert.That($"{p.X},{p.Y}", Is.EqualTo(to));
+                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _), Is.EqualTo(false));
+                });
             }
             else
             {
-                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
-                Assert.That($"{p.X},{p.Y}", Is.EqualTo(expected));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+                    Assert.That($"{p.X},{p.Y}", Is.EqualTo(expected));
+                });
             }
         }
 

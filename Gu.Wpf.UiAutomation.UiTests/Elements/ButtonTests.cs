@@ -240,9 +240,12 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.That(textBlock.Text, Is.EqualTo("0"));
 
             Mouse.LeftClick(button.GetClickablePoint());
-            Assert.That(textBlock.Text, Is.EqualTo("1"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(textBlock.Text, Is.EqualTo("1"));
 
-            Assert.That(button.TryGetClickablePoint(out var p), Is.EqualTo(true));
+                Assert.That(button.TryGetClickablePoint(out var p), Is.EqualTo(true));
+            });
             Mouse.LeftClick(p);
             Assert.That(textBlock.Text, Is.EqualTo("2"));
         }

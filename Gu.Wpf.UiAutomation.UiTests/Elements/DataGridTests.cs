@@ -36,8 +36,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             for (var i = 0; i < dataGrid.Rows.Count; i++)
             {
                 var row = dataGrid.Rows[i];
-                Assert.That(row.Cells.Count, Is.EqualTo(2));
-                Assert.That(dataGrid.Row(0).Cells.Count, Is.EqualTo(2));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(row.Cells.Count, Is.EqualTo(2));
+                    Assert.That(dataGrid.Row(0).Cells.Count, Is.EqualTo(2));
+                });
             }
         }
 
@@ -162,8 +165,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 return;
             }
 
-            Assert.That(dataGrid.ColumnHeaders[0].Text, Is.EqualTo("IntValue"));
-            Assert.That(dataGrid.ColumnHeaders[1].Text, Is.EqualTo("StringValue"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(dataGrid.ColumnHeaders[0].Text, Is.EqualTo("IntValue"));
+                Assert.That(dataGrid.ColumnHeaders[1].Text, Is.EqualTo("StringValue"));
+            });
         }
 
         [TestCase("DataGrid")]
@@ -177,12 +183,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.That(dataGrid.Row(0).Cells[0].Value, Is.EqualTo("1"));
-            Assert.That(dataGrid.Row(0).Cells[1].Value, Is.EqualTo("Item 1"));
-            Assert.That(dataGrid.Row(1).Cells[0].Value, Is.EqualTo("2"));
-            Assert.That(dataGrid.Row(1).Cells[1].Value, Is.EqualTo("Item 2"));
-            Assert.That(dataGrid.Row(2).Cells[0].Value, Is.EqualTo("3"));
-            Assert.That(dataGrid.Row(2).Cells[1].Value, Is.EqualTo("Item 3"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(dataGrid.Row(0).Cells[0].Value, Is.EqualTo("1"));
+                Assert.That(dataGrid.Row(0).Cells[1].Value, Is.EqualTo("Item 1"));
+                Assert.That(dataGrid.Row(1).Cells[0].Value, Is.EqualTo("2"));
+                Assert.That(dataGrid.Row(1).Cells[1].Value, Is.EqualTo("Item 2"));
+                Assert.That(dataGrid.Row(2).Cells[0].Value, Is.EqualTo("3"));
+                Assert.That(dataGrid.Row(2).Cells[1].Value, Is.EqualTo("Item 3"));
+            });
         }
 
         [TestCase("DataGrid")]
@@ -196,14 +205,17 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
-            Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(dataGrid[0, 0].Value, Is.EqualTo("1"));
+                Assert.That(dataGrid[0, 1].Value, Is.EqualTo("Item 1"));
 
-            Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
-            Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
+                Assert.That(dataGrid[1, 0].Value, Is.EqualTo("2"));
+                Assert.That(dataGrid[1, 1].Value, Is.EqualTo("Item 2"));
 
-            Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
-            Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
+                Assert.That(dataGrid[2, 0].Value, Is.EqualTo("3"));
+                Assert.That(dataGrid[2, 1].Value, Is.EqualTo("Item 3"));
+            });
         }
 
         [TestCase("DataGrid", 0, 1)]
@@ -221,20 +233,32 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
             var selectedRow = dataGrid.Select(index1);
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index1 + 1}"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index1 + 1}"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index1 + 1}"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index1 + 1}"));
+            });
 
             selectedRow = (DataGridRow)dataGrid.SelectedItem;
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index1 + 1}"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index1 + 1}"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index1 + 1}"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index1 + 1}"));
+            });
 
             selectedRow = dataGrid.Select(index2);
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index2 + 1}"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index2 + 1}"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index2 + 1}"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index2 + 1}"));
+            });
 
             selectedRow = (DataGridRow)dataGrid.SelectedItem;
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index2 + 1}"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index2 + 1}"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo($"{index2 + 1}"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo($"Item {index2 + 1}"));
+            });
         }
 
         [TestCase("SelectCellDataGrid", 2, 0)]
@@ -259,20 +283,32 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
             var selectedRow = dataGrid.Select(1, "Item 2");
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("2"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("2"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 2"));
+            });
 
             selectedRow = (DataGridRow)dataGrid.SelectedItem;
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("2"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("2"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 2"));
+            });
 
             selectedRow = dataGrid.Select(1, "Item 3");
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("3"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 3"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("3"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 3"));
+            });
 
             selectedRow = (DataGridRow)dataGrid.SelectedItem;
-            Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("3"));
-            Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 3"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(selectedRow.Cells[0].Value, Is.EqualTo("3"));
+                Assert.That(selectedRow.Cells[1].Value, Is.EqualTo("Item 3"));
+            });
         }
     }
 }

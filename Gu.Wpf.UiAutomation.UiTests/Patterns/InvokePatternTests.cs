@@ -28,8 +28,11 @@
             {
                 invokePattern.Invoke();
                 Wait.For(TimeSpan.FromMilliseconds(50));
-                Assert.That(button.Text, Is.EqualTo("Invoked!"));
-                Assert.That(invokeFired, Is.EqualTo(true));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(button.Text, Is.EqualTo("Invoked!"));
+                    Assert.That(invokeFired, Is.EqualTo(true));
+                });
             }
         }
     }

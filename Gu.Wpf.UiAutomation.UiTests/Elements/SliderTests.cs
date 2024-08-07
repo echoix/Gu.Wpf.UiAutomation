@@ -30,12 +30,15 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var slider = window.FindSlider("Slider");
             slider.Value = 5;
 
-            Assert.That(slider.Minimum, Is.EqualTo(0));
-            Assert.That(slider.Maximum, Is.EqualTo(10));
-            Assert.That(slider.Value, Is.EqualTo(5));
-            Assert.That(slider.SmallChange, Is.EqualTo(1));
-            Assert.That(slider.LargeChange, Is.EqualTo(4));
-            Assert.That(slider.IsOnlyValue, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(slider.Minimum, Is.EqualTo(0));
+                Assert.That(slider.Maximum, Is.EqualTo(10));
+                Assert.That(slider.Value, Is.EqualTo(5));
+                Assert.That(slider.SmallChange, Is.EqualTo(1));
+                Assert.That(slider.LargeChange, Is.EqualTo(4));
+                Assert.That(slider.IsOnlyValue, Is.EqualTo(false));
+            });
         }
 
         [Test]

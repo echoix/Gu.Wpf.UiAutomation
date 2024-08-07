@@ -140,15 +140,18 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                     TimeSpan.FromMilliseconds(100),
                     out var child), Is.EqualTo(true));
                 Assert.IsInstanceOf<CheckBox>(child);
-                Assert.That(child.AutomationId, Is.EqualTo("XName"));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(child.AutomationId, Is.EqualTo("XName"));
 
-                Assert.That(window.TryFindAt(
-                    TreeScope.Descendants,
-                    Conditions.CheckBox,
-                    100,
-                    x => new CheckBox(x),
-                    TimeSpan.FromMilliseconds(100),
-                    out child), Is.EqualTo(false));
+                    Assert.That(window.TryFindAt(
+                        TreeScope.Descendants,
+                        Conditions.CheckBox,
+                        100,
+                        x => new CheckBox(x),
+                        TimeSpan.FromMilliseconds(100),
+                        out child), Is.EqualTo(false));
+                });
                 Assert.IsNull(child);
             }
         }

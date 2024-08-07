@@ -33,12 +33,18 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
         {
             using var app = Application.Launch(ExeFileName, "EmptyWindow");
             var window = app.MainWindow;
-            Assert.That(window.CanResize, Is.EqualTo(true));
-            Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("300,300"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.CanResize, Is.EqualTo(true));
+                Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("300,300"));
+            });
 
             window.Resize(270, 280);
-            Assert.That(window.CanResize, Is.EqualTo(true));
-            Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("270,280"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.CanResize, Is.EqualTo(true));
+                Assert.That(window.Bounds.Size.ToString(CultureInfo.InvariantCulture), Is.EqualTo("270,280"));
+            });
         }
 
         [Test]
@@ -49,12 +55,18 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.That(window.CanMove, Is.EqualTo(true));
 
             window.MoveTo(10, 20);
-            Assert.That(window.CanMove, Is.EqualTo(true));
-            Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("10,20,300,300"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.CanMove, Is.EqualTo(true));
+                Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("10,20,300,300"));
+            });
 
             window.MoveTo(30, 40);
-            Assert.That(window.CanMove, Is.EqualTo(true));
-            Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("30,40,300,300"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(window.CanMove, Is.EqualTo(true));
+                Assert.That(window.Bounds.ToString(CultureInfo.InvariantCulture), Is.EqualTo("30,40,300,300"));
+            });
         }
 
         [Test]

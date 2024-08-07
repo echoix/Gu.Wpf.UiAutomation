@@ -50,8 +50,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var expander = window.FindExpander(key);
-            Assert.That(((TextBlock)expander.Content).Text, Is.EqualTo(content));
-            Assert.That(((TextBlock)expander.ContentCollection[0]).Text, Is.EqualTo(content));
+            Assert.Multiple(() =>
+            {
+                Assert.That(((TextBlock)expander.Content).Text, Is.EqualTo(content));
+                Assert.That(((TextBlock)expander.ContentCollection[0]).Text, Is.EqualTo(content));
+            });
         }
 
         [Test]
@@ -61,13 +64,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("WithItemsControl");
             expander.IsExpanded = true;
-            Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
-            Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = expander.Content);
             var content = expander.ContentCollection;
-            Assert.That(content.Count, Is.EqualTo(2));
-            Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
-            Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(content.Count, Is.EqualTo(2));
+                Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+                Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            });
         }
 
         [Test]
@@ -77,13 +86,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var expander = window.FindExpander("WithItemsControl");
             expander.IsExpanded = true;
-            Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
-            Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(expander.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((ToggleButton)expander.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = expander.Content);
             var content = expander.ContentElements(x => new TextBlock(x));
             Assert.That(content.Count, Is.EqualTo(2));
-            Assert.That(content[0].Text, Is.EqualTo("1"));
-            Assert.That(content[1].Text, Is.EqualTo("2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(content[0].Text, Is.EqualTo("1"));
+                Assert.That(content[1].Text, Is.EqualTo("2"));
+            });
         }
 
         [Test]

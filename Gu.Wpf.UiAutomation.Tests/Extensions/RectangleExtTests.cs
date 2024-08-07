@@ -12,9 +12,12 @@ namespace Gu.Wpf.UiAutomation.Tests.Extensions
             var rectangle = new Rect(0, 0, 0, 0);
             var rectangle2 = new Rect(0, 0, 1, 0);
             var rectangle3 = new Rect(0, 0, 0, 1);
-            Assert.That(rectangle.IsZeroes(), Is.EqualTo(true));
-            Assert.That(rectangle2.IsZeroes(), Is.EqualTo(false));
-            Assert.That(rectangle3.IsZeroes(), Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(rectangle.IsZeroes(), Is.EqualTo(true));
+                Assert.That(rectangle2.IsZeroes(), Is.EqualTo(false));
+                Assert.That(rectangle3.IsZeroes(), Is.EqualTo(false));
+            });
         }
 
         [Test]

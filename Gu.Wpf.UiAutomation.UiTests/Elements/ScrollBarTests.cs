@@ -40,13 +40,16 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ScrollBarWindow");
             var window = app.MainWindow;
             var scrollBar = window.FindVerticalScrollBar();
-            Assert.That(scrollBar.Minimum, Is.EqualTo(0));
-            //// Using a tolerance as there is a difference on Win7 & Win10
-            Assert.That(scrollBar.Maximum, Is.EqualTo(155).Within(1));
-            Assert.That(scrollBar.Value, Is.EqualTo(0));
-            Assert.That(scrollBar.SmallChange, Is.EqualTo(0.1));
-            Assert.That(scrollBar.LargeChange, Is.EqualTo(1));
-            Assert.That(scrollBar.IsReadOnly, Is.EqualTo(false));
+            Assert.Multiple(() =>
+            {
+                Assert.That(scrollBar.Minimum, Is.EqualTo(0));
+                //// Using a tolerance as there is a difference on Win7 & Win10
+                Assert.That(scrollBar.Maximum, Is.EqualTo(155).Within(1));
+                Assert.That(scrollBar.Value, Is.EqualTo(0));
+                Assert.That(scrollBar.SmallChange, Is.EqualTo(0.1));
+                Assert.That(scrollBar.LargeChange, Is.EqualTo(1));
+                Assert.That(scrollBar.IsReadOnly, Is.EqualTo(false));
+            });
         }
     }
 }

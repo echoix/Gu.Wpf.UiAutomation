@@ -50,8 +50,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox(key);
-            Assert.That(((TextBlock)groupBox.Content).Text, Is.EqualTo(content));
-            Assert.That(((TextBlock)groupBox.ContentCollection[0]).Text, Is.EqualTo(content));
+            Assert.Multiple(() =>
+            {
+                Assert.That(((TextBlock)groupBox.Content).Text, Is.EqualTo(content));
+                Assert.That(((TextBlock)groupBox.ContentCollection[0]).Text, Is.EqualTo(content));
+            });
         }
 
         [Test]
@@ -60,13 +63,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox("WithItemsControl");
-            Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
-            Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = groupBox.Content);
             var content = groupBox.ContentCollection;
-            Assert.That(content.Count, Is.EqualTo(2));
-            Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
-            Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(content.Count, Is.EqualTo(2));
+                Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
+                Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
+            });
         }
 
         [Test]
@@ -75,13 +84,19 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var groupBox = window.FindGroupBox("WithItemsControl");
-            Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
-            Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(groupBox.HeaderText, Is.EqualTo("WithItemsControl"));
+                Assert.That(((TextBlock)groupBox.Header).Text, Is.EqualTo("WithItemsControl"));
+            });
             Assert.Throws<InvalidOperationException>(() => _ = groupBox.Content);
             var content = groupBox.ContentElements(x => new TextBlock(x));
             Assert.That(content.Count, Is.EqualTo(2));
-            Assert.That(content[0].Text, Is.EqualTo("1"));
-            Assert.That(content[1].Text, Is.EqualTo("2"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(content[0].Text, Is.EqualTo("1"));
+                Assert.That(content[1].Text, Is.EqualTo("2"));
+            });
         }
     }
 }
