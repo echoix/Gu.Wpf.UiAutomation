@@ -18,28 +18,25 @@ namespace Gu.Wpf.UiAutomation.Tests
         public void TryGetPosition(string @from, string to, int elapsed, string expected)
         {
             var interpolation = Interpolation.Start(Parse(from), Parse(to), TimeSpan.FromMilliseconds(200));
-            Assert.Multiple(() =>
-            {
-                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p), Is.EqualTo(true));
-                Assert.That($"{p.X},{p.Y}", Is.EqualTo(@from));
-            });
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+            Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(0), out var p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+            Assert.That($"{p.X},{p.Y}", Is.EqualTo(@from));
 
             if (expected is null)
             {
-                Assert.Multiple(() =>
-                {
-                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
-                    Assert.That($"{p.X},{p.Y}", Is.EqualTo(to));
-                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _), Is.EqualTo(false));
-                });
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That($"{p.X},{p.Y}", Is.EqualTo(to));
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out _), Is.EqualTo(false));
             }
             else
             {
-                Assert.Multiple(() =>
-                {
-                    Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
-                    Assert.That($"{p.X},{p.Y}", Is.EqualTo(expected));
-                });
+#pragma warning disable NUnit2045 // Use Assert.Multiple
+                Assert.That(interpolation.TryGetPosition(TimeSpan.FromMilliseconds(elapsed), out p), Is.EqualTo(true));
+#pragma warning restore NUnit2045 // Use Assert.Multiple
+                Assert.That($"{p.X},{p.Y}", Is.EqualTo(expected));
             }
         }
 
