@@ -43,7 +43,7 @@ namespace Gu.Wpf.UiAutomation.Tests
         private static POINT Parse(string text)
         {
             var texts = text.Split(',');
-            Assert.That(texts.Length, Is.EqualTo(2));
+            Assert.That(texts, Has.Length.EqualTo(2));
             return new POINT(
                 int.Parse(texts[0], CultureInfo.InvariantCulture),
                 int.Parse(texts[1], CultureInfo.InvariantCulture));
