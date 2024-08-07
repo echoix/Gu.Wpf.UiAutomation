@@ -21,7 +21,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "TreeViewWindow");
             var window = app.MainWindow;
             var tree = window.FindTreeView();
-            Assert.IsNull(tree.SelectedTreeViewItem);
+            Assert.That(tree.SelectedTreeViewItem, Is.Null);
             Assert.That(tree.Items.Count, Is.EqualTo(2));
             var treeItem = tree.Items[0];
             treeItem.Expand();

@@ -152,7 +152,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                         TimeSpan.FromMilliseconds(100),
                         out child), Is.EqualTo(false));
                 });
-                Assert.IsNull(child);
+                Assert.That(child, Is.Null);
             }
         }
     }

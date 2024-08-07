@@ -65,7 +65,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             Assert.That(listBox.Items.Count, Is.EqualTo(2));
             Assert.That(listBox.Items[0], Is.InstanceOf<ListBoxItem>());
             Assert.That(listBox.Items[1], Is.InstanceOf<ListBoxItem>());
-            Assert.IsNull(listBox.SelectedItem);
+            Assert.That(listBox.SelectedItem, Is.Null);
             Assert.That(listBox.SelectedIndex, Is.EqualTo(-1));
 
             var item = listBox.Select(0);
@@ -93,7 +93,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "ListBoxWindow");
             var window = app.MainWindow;
             var listBox = window.FindListBox("ListBox10");
-            Assert.IsNull(listBox.SelectedItem);
+            Assert.That(listBox.SelectedItem, Is.Null);
 
             var item = listBox.Select(9);
             Assert.Multiple(() =>
