@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{B1C84389-4
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		azure-pipelines.yml = azure-pipelines.yml
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.github\dependabot.yml = .github\dependabot.yml
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
 EndProject

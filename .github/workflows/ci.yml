@@ -16,7 +16,10 @@ env:
 jobs:
   build_and_test:
     name: Build & Test Solution
-    runs-on: windows-2022
+    strategy:
+      matrix:
+        os: [windows-2019, windows-2022]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
