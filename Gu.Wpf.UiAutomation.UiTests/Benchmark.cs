@@ -97,7 +97,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
 
             var findCheckBox = sw.Elapsed;
             sw.Stop();
-            Assert.That(results.Count, Is.EqualTo(100));
+            Assert.That(results, Has.Count.EqualTo(100));
             Console.WriteLine($"Launch:       {launch.TotalMilliseconds:F0} ms");
             Console.WriteLine($"MainWindow:   {mainWindow.TotalMilliseconds - launch.TotalMilliseconds:F0} ms ({mainWindow.TotalMilliseconds:F0})");
             Console.WriteLine($"FindCheckBox: {findCheckBox.TotalMilliseconds - mainWindow.TotalMilliseconds:F0} ms  ({findCheckBox.TotalMilliseconds:F0})");

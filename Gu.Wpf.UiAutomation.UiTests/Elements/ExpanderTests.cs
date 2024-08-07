@@ -73,7 +73,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var content = expander.ContentCollection;
             Assert.Multiple(() =>
             {
-                Assert.That(content.Count, Is.EqualTo(2));
+                Assert.That(content, Has.Count.EqualTo(2));
                 Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
                 Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
             });
@@ -93,7 +93,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             });
             Assert.Throws<InvalidOperationException>(() => _ = expander.Content);
             var content = expander.ContentElements(x => new TextBlock(x));
-            Assert.That(content.Count, Is.EqualTo(2));
+            Assert.That(content, Has.Count.EqualTo(2));
             Assert.Multiple(() =>
             {
                 Assert.That(content[0].Text, Is.EqualTo("1"));

@@ -15,9 +15,9 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             btn.RightClick();
             var ctxMenu = window.ContextMenu;
             var subMenuLevel1 = ctxMenu.Items;
-            Assert.That(subMenuLevel1.Count, Is.EqualTo(2));
+            Assert.That(subMenuLevel1, Has.Count.EqualTo(2));
             var subMenuLevel2 = subMenuLevel1[1].Items;
-            Assert.That(subMenuLevel2.Count, Is.EqualTo(1));
+            Assert.That(subMenuLevel2, Has.Count.EqualTo(1));
             var innerItem = subMenuLevel2[0];
             Assert.That(innerItem.Text, Is.EqualTo("Inner Context"));
             Assert.That(UiElement.FromAutomationElement(ctxMenu.AutomationElement), Is.InstanceOf<ContextMenu>());

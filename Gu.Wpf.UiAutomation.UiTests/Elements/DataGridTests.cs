@@ -38,8 +38,8 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
                 var row = dataGrid.Rows[i];
                 Assert.Multiple(() =>
                 {
-                    Assert.That(row.Cells.Count, Is.EqualTo(2));
-                    Assert.That(dataGrid.Row(0).Cells.Count, Is.EqualTo(2));
+                    Assert.That(row.Cells, Has.Count.EqualTo(2));
+                    Assert.That(dataGrid.Row(0).Cells, Has.Count.EqualTo(2));
                 });
             }
         }
@@ -145,7 +145,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.Launch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.That(dataGrid.ColumnHeaders.Count, Is.EqualTo(expected));
+            Assert.That(dataGrid.ColumnHeaders, Has.Count.EqualTo(expected));
         }
 
         [TestCase("DataGrid", 2)]
@@ -159,7 +159,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "DataGridWindow");
             var window = app.MainWindow;
             var dataGrid = window.FindDataGrid(name);
-            Assert.That(dataGrid.ColumnHeaders.Count, Is.EqualTo(expectedCount));
+            Assert.That(dataGrid.ColumnHeaders, Has.Count.EqualTo(expectedCount));
             if (expectedCount == 0)
             {
                 return;

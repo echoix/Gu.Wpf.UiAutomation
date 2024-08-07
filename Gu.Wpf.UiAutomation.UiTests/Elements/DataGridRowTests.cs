@@ -40,7 +40,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, "SingleDataGridWindow");
             var window = app.MainWindow;
             var row = (DataGridRow)window.FindFirst(TreeScope.Descendants, Conditions.DataGridRow);
-            Assert.That(row.Cells.Count, Is.EqualTo(2));
+            Assert.That(row.Cells, Has.Count.EqualTo(2));
             Assert.That(row.Cells, Is.All.InstanceOf(typeof(DataGridCell)));
             Assert.That(row.Cells.Select(x => x.Value), Is.EqualTo(new[] { "1", "Item 1" }).AsCollection);
         }

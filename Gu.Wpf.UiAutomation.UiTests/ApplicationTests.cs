@@ -86,7 +86,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
         {
             using var app = Application.AttachOrLaunch(ExeFileName, "EmptyWindow");
             app.WaitForMainWindow();
-            Assert.That(app.GetAllTopLevelWindows().Count, Is.EqualTo(1));
+            Assert.That(app.GetAllTopLevelWindows(), Has.Count.EqualTo(1));
         }
 
         [Test]

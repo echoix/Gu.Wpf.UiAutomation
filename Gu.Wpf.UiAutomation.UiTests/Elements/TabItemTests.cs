@@ -75,7 +75,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var content = tabItem.ContentCollection;
             Assert.Multiple(() =>
             {
-                Assert.That(content.Count, Is.EqualTo(2));
+                Assert.That(content, Has.Count.EqualTo(2));
                 Assert.That(((TextBlock)content[0]).Text, Is.EqualTo("1"));
                 Assert.That(((TextBlock)content[1]).Text, Is.EqualTo("2"));
             });

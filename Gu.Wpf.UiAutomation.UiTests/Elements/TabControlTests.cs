@@ -28,7 +28,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
             var window = app.MainWindow;
             var tab = window.FindTabControl();
-            Assert.That(tab.Items.Count, Is.EqualTo(4));
+            Assert.That(tab.Items, Has.Count.EqualTo(4));
             Assert.Multiple(() =>
             {
                 Assert.That(tab.Items[0].HeaderText, Is.EqualTo("x:Name"));

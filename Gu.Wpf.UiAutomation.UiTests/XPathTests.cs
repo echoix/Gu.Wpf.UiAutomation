@@ -27,7 +27,7 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var items = window.FindAllByXPath("//MenuItem");
-            Assert.That(items.Count, Is.EqualTo(6));
+            Assert.That(items, Has.Count.EqualTo(6));
         }
 
         [Test]
@@ -36,9 +36,9 @@ namespace Gu.Wpf.UiAutomation.UiTests
             using var app = Application.AttachOrLaunch("notepad.exe");
             var window = app.MainWindow;
             var items = window.FindAllByXPath("(//MenuBar)[1]/MenuItem");
-            Assert.That(items.Count, Is.EqualTo(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             items = window.FindAllByXPath("(//MenuBar)[2]/MenuItem");
-            Assert.That(items.Count, Is.EqualTo(5));
+            Assert.That(items, Has.Count.EqualTo(5));
         }
 
         private static string GetFileMenuText()

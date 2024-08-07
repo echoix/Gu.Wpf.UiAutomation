@@ -22,7 +22,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var window = app.MainWindow;
             var tree = window.FindTreeView();
             Assert.That(tree.SelectedTreeViewItem, Is.Null);
-            Assert.That(tree.Items.Count, Is.EqualTo(2));
+            Assert.That(tree.Items, Has.Count.EqualTo(2));
             var treeItem = tree.Items[0];
             treeItem.Expand();
             var item = treeItem.Items[1];

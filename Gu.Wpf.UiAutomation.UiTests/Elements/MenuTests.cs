@@ -29,7 +29,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             var menu = window.FindMenu();
             Assert.That(menu, Is.Not.Null);
             var items = menu.Items;
-            Assert.That(items.Count, Is.EqualTo(2));
+            Assert.That(items, Has.Count.EqualTo(2));
             Assert.Multiple(() =>
             {
                 Assert.That(items[0].Text, Is.EqualTo("File"));
@@ -37,11 +37,11 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             });
 
             var subitems1 = items[0].Items;
-            Assert.That(subitems1.Count, Is.EqualTo(1));
+            Assert.That(subitems1, Has.Count.EqualTo(1));
             Assert.That(subitems1[0].Text, Is.EqualTo("Exit"));
 
             var subitems2 = items[1].Items;
-            Assert.That(subitems2.Count, Is.EqualTo(2));
+            Assert.That(subitems2, Has.Count.EqualTo(2));
             Assert.Multiple(() =>
             {
                 Assert.That(subitems2[0].Text, Is.EqualTo("Copy"));
@@ -49,7 +49,7 @@ namespace Gu.Wpf.UiAutomation.UiTests.Elements
             });
 
             var subsubitems1 = subitems2[0].Items;
-            Assert.That(subsubitems1.Count, Is.EqualTo(2));
+            Assert.That(subsubitems1, Has.Count.EqualTo(2));
             Assert.Multiple(() =>
             {
                 Assert.That(subsubitems1[0].Text, Is.EqualTo("Plain"));
