@@ -36,7 +36,7 @@ jobs:
         run: dotnet test --configuration Release --logger nunit
   package:
     name: Package Source Projects
-    runs-on: windows-2022
+    runs-on: windows-2025
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
