@@ -25,7 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup .NET ${{ env.CI_DOTNET_VERSION }}
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '${{ env.CI_DOTNET_VERSION }}'
       - name: Restore dependencies
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup .NET ${{ env.CI_DOTNET_VERSION }}
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '${{ env.CI_DOTNET_VERSION }}'
       - name: Build Gu.Wpf.UiAutomation
@@ -67,7 +67,7 @@ jobs:
           name: nuget
           path: ${{ env.CI_NUGET_OUTPUT }}
       - name: Setup .NET ${{ env.CI_DOTNET_VERSION }}
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '${{ env.CI_DOTNET_VERSION }}'
       - name: Publish NuGet Packages
