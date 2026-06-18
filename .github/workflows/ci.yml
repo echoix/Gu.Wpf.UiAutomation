@@ -23,7 +23,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup .NET ${{ env.CI_DOTNET_VERSION }}
         uses: actions/setup-dotnet@v4
         with:
@@ -39,7 +39,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup .NET ${{ env.CI_DOTNET_VERSION }}
         uses: actions/setup-dotnet@v4
         with:
